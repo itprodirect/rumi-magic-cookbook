@@ -161,6 +161,29 @@ curl -X POST http://localhost:3000/api/cron/cleanup \
 curl "http://localhost:3000/api/gallery?deviceId=<uuid-v4>"
 ```
 
+## Local Demo Flow (End-to-End)
+
+Once you have the dev server running (`npm run dev`) and the database seeded:
+
+1. **Open the builder** at http://localhost:3000
+   - Select a palette, style, theme, and mood (required)
+   - Optionally pick effects, addons, steps, ingredients, title, creature
+   - Or use a preset to auto-fill everything
+   - Click "Create Recipe Card"
+   - You should see "Recipe submitted! ID: xxxxxxxx... Status: pending"
+
+2. **Open the admin panel** at http://localhost:3000/admin
+   - Enter your PIN (the one you hashed for `ADMIN_PIN_HASH`)
+   - You'll see the pending generation in the queue
+   - Click "Approve" — this calls OpenAI to generate the image (takes ~10-30s)
+   - If moderation passes, status changes to "approved"
+
+3. **Check the gallery** at http://localhost:3000/gallery
+   - Your approved image should appear in the grid
+   - The gallery is scoped to your device ID (stored in localStorage)
+
+4. **Test rejection**: submit another recipe, then reject it from admin — verify it doesn't appear in the gallery
+
 ## Common Issues
 
 | Problem | Fix |
