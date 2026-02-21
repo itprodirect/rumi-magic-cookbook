@@ -22,8 +22,8 @@ cp .env.example .env.local
 # Edit .env.local with your values (see below)
 
 # 4. Set up database
-npx prisma migrate dev    # creates tables
-npx prisma db seed        # loads dictionary + presets from content/*.json
+npm run db:migrate         # creates tables (prisma migrate dev)
+npm run db:seed            # loads 292 dictionary items + 40 presets
 
 # 5. Run dev server
 npm run dev                # starts on http://localhost:3000
@@ -103,17 +103,29 @@ docker run --name rumi-pg -e POSTGRES_PASSWORD=dev -e POSTGRES_DB=rumi -p 5432:5
 
 ```bash
 # After changing schema.prisma:
-npx prisma migrate dev --name describe_change
+npm run db:migrate           # or: npx prisma migrate dev --name describe_change
+
+# Re-seed data:
+npm run db:seed              # or: npx prisma db seed
 
 # View data:
 npx prisma studio
 
 # Reset everything:
-npx prisma migrate reset    # WARNING: drops all data
+npx prisma migrate reset     # WARNING: drops all data
 
 # Generate client after schema change:
 npx prisma generate
 ```
+
+### Prisma 7 Notes
+
+This project uses **Prisma 7**, which has key differences from v6:
+
+- **No `url` in schema.prisma** — the datasource URL is configured in `prisma.config.ts` (project root)
+- **Driver adapter required** — PrismaClient uses `@prisma/adapter-pg` instead of a direct connection string
+- **Config file loads `.env.local`** via dotenv (Prisma's `env()` helper only reads `.env`)
+- **Seed config** is in `prisma.config.ts` under `migrations.seed`, not in `package.json` (though we keep both for compatibility)
 
 ## Testing Moderation
 

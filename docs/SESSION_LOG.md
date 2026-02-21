@@ -32,6 +32,49 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 
 ## Sessions
 
+### Session 1 — 2026-02-21
+**Agent:** Claude Code (Opus 4.6)
+**Phase:** 1 + 2
+**Goal:** Phase 1 data layer, Phase 1.5 Prisma fixes, Phase 2 API routes + server libs
+
+**Completed:**
+- Fixed package.json scripts (removed --webpack from build, added postinstall)
+- Created Prisma schema (4 models), prisma.config.ts for Prisma 7
+- Ran initial migration (20260221143608_init)
+- Created seed script, verified: 292 dictionary items, 40 presets
+- Adapted to Prisma 7: @prisma/adapter-pg driver adapter, config-based datasource URL
+- Created 7 server lib files: db.ts, constants.ts, openai.ts, session.ts, prompt-builder.ts, moderation.ts, rate-limit.ts
+- Created 11 API routes: generate, admin/login, admin/queue, admin/approve, admin/reject, admin/logout, gallery, dictionary, presets, cron/cleanup
+- Fixed lint script (next lint removed in Next.js 16 → eslint src/)
+- All quality gates pass: lint clean, build succeeds
+
+**Deferred:**
+- src/lib/sanitize.ts (suggestion input cleaning + PII check) → Phase 3 with suggest-word route
+- POST /api/suggest-word → Phase 3
+- Kid UI (Phase 4) and Parent UI (Phase 5) → future sessions
+
+**Issues Found:**
+- Prisma 7 removed `url` from schema.prisma datasource → fixed with prisma.config.ts
+- Prisma 7 requires driver adapter for PrismaClient → installed @prisma/adapter-pg
+- `next lint` removed in Next.js 16 → changed to `eslint src/`
+- `prisma db seed` failed without `prisma generate` first → generate runs via postinstall
+- Prisma env() helper doesn't read .env.local → dotenv.config({ path: '.env.local' }) workaround
+
+**Files Changed:**
+- package.json — scripts (db:migrate, db:seed, lint fix), prisma seed config, new deps
+- prisma.config.ts — NEW: Prisma 7 config
+- prisma/schema.prisma — NEW: 4 models, 2 enums
+- prisma/seed.ts — NEW: content loader with Prisma 7 adapter
+- prisma/migrations/ — NEW: init migration
+- src/lib/*.ts — NEW: 7 server library files
+- src/app/api/**/*.ts — NEW: 11 API route files
+
+**Notes:**
+- Admin auth route is at /api/admin/login (not /api/admin/auth as originally planned)
+- Image generation happens at approve time, not at generate time (pending requests have no image)
+- Rate limiting is device + global only in V0 (no IP-based tracking without persistent IP storage)
+- Codex review pending before continuing to Phase 3/4
+
 ### Session 0 — 2026-02-21
 **Agent:** Manual (Opus planning)
 **Phase:** 0

@@ -4,7 +4,7 @@
 
 ## Project
 
-- **Stack:** Next.js 15 (App Router) · TypeScript · Tailwind · Prisma · Postgres (Neon)
+- **Stack:** Next.js 16 (App Router) · TypeScript · Tailwind · Prisma 7 · Postgres (Neon)
 - **Domain:** rumi.itprodirect.com
 - **Deploy:** Vercel
 - **Dev note:** Use `npm run dev` (runs `next dev --webpack`). Turbopack has root-resolution issues on Windows/WSL2.
@@ -14,10 +14,11 @@
 ```bash
 npm run dev          # next dev --webpack (port 3000)
 npm run build        # next build
-npm run lint         # next lint
-npx prisma migrate dev   # run migrations
-npx prisma db seed       # seed dictionary + presets
-npx prisma studio        # visual DB browser
+npm run lint         # eslint src/
+npm run db:migrate   # prisma migrate dev
+npm run db:seed      # prisma db seed (292 items, 40 presets)
+npx prisma studio    # visual DB browser
+npx prisma generate  # regenerate client after schema changes
 ```
 
 ## Env Vars
@@ -61,33 +62,34 @@ These apply to every line of code. Violations are blockers.
 - [x] `create-next-app` with TypeScript + Tailwind + App Router
 - [x] Repo on GitHub
 
-### Phase 1 — Data Layer
-- [ ] `prisma/schema.prisma` (4 models: DictionaryItem, Preset, GenerationRequest, Suggestion)
-- [ ] Initial migration
-- [ ] `prisma/seed.ts` (load `content/*.json` into DB)
-- [ ] `src/lib/db.ts` (Prisma singleton)
+### Phase 1 — Data Layer ✅ (done)
+- [x] `prisma/schema.prisma` (4 models: DictionaryItem, Preset, GenerationRequest, Suggestion)
+- [x] `prisma.config.ts` (Prisma 7 config with `@prisma/adapter-pg`)
+- [x] Initial migration (`20260221143608_init`)
+- [x] `prisma/seed.ts` (load `content/*.json` into DB — 292 items, 40 presets)
+- [x] `src/lib/db.ts` (Prisma singleton with adapter pattern)
 
-### Phase 2 — Server Libraries
-- [ ] `src/lib/constants.ts` (safety suffix, limits, config)
-- [ ] `src/lib/openai.ts` (client init, `server-only`)
-- [ ] `src/lib/prompt-builder.ts` (token labels → composed prompt)
-- [ ] `src/lib/moderation.ts` (text + image moderation)
-- [ ] `src/lib/rate-limit.ts` (DB-based counting)
-- [ ] `src/lib/session.ts` (HMAC cookie create/verify/destroy)
+### Phase 2 — Server Libraries ✅ (done)
+- [x] `src/lib/constants.ts` (safety suffix, limits, config)
+- [x] `src/lib/openai.ts` (client init, `server-only`)
+- [x] `src/lib/prompt-builder.ts` (token labels → composed prompt + safety suffix)
+- [x] `src/lib/moderation.ts` (text + image moderation via `omni-moderation-latest`)
+- [x] `src/lib/rate-limit.ts` (DB-based device + global counting)
+- [x] `src/lib/session.ts` (HMAC cookie create/verify/destroy, sliding 30min TTL)
 - [ ] `src/lib/sanitize.ts` (suggestion input cleaning + PII check)
 
-### Phase 3 — API Routes
-- [ ] `POST /api/generate` — compose → moderate text → generate → moderate image → store pending
+### Phase 3 — API Routes (in progress)
+- [x] `POST /api/generate` — validate tokens → rate limit → moderate text → store pending
 - [ ] `POST /api/suggest-word` — sanitize → moderate → store pending
-- [ ] `POST /api/admin/auth` — PIN verify → session cookie
-- [ ] `GET  /api/admin/queue` — pending items (authed)
-- [ ] `POST /api/admin/approve` — set approved (authed)
-- [ ] `POST /api/admin/reject` — set rejected + null image (authed)
-- [ ] `GET  /api/gallery` — approved images for device_id
-- [ ] `GET  /api/dictionary` — active items (labels only)
-- [ ] `GET  /api/presets` — active presets
-- [ ] `POST /api/admin/logout` — clear session
-- [ ] `GET  /api/cron/cleanup` — retention enforcement
+- [x] `POST /api/admin/login` — PIN verify → session cookie (brute-force lockout)
+- [x] `GET  /api/admin/queue` — pending generations + suggestions (authed)
+- [x] `POST /api/admin/approve` — generate image via OpenAI → moderate image → store (authed)
+- [x] `POST /api/admin/reject` — set rejected + null image (authed)
+- [x] `GET  /api/gallery` — approved images for device_id
+- [x] `GET  /api/dictionary` — active items (labels only, no prompt_text)
+- [x] `GET  /api/presets` — active presets
+- [x] `POST /api/admin/logout` — clear session
+- [x] `POST /api/cron/cleanup` — retention enforcement (CRON_SECRET required)
 
 ### Phase 4 — Kid UI
 - [ ] Builder page (`/kid`) with category pickers, preset selector, submit
@@ -119,9 +121,11 @@ rumi-magic-cookbook/
 ├── CLAUDE.md                   ← you are here
 ├── .env.example
 ├── .gitattributes
+├── prisma.config.ts            ← Prisma 7 config (datasource URL, seed)
 ├── prisma/
-│   ├── schema.prisma
-│   └── seed.ts
+│   ├── schema.prisma           ✅
+│   ├── seed.ts                 ✅
+│   └── migrations/             ✅ (20260221143608_init)
 ├── content/                    ← spec pack token dictionaries
 │   ├── palettes.json ... etc
 │   └── presets.json
@@ -132,48 +136,55 @@ rumi-magic-cookbook/
 │   ├── RECIPE_CARD_LAYOUT.md   ← from spec pack
 │   ├── ADMIN_RUBRIC.md         ← from spec pack
 │   ├── RUNBOOK.md              ← from spec pack
-│   ├── ARCHITECTURE.md         ← V0 architecture (new)
-│   ├── SECURITY.md             ← security constraints (new)
-│   ├── SETUP.md                ← dev setup guide (new)
-│   └── SESSION_LOG.md          ← build session tracking (new)
+│   ├── ARCHITECTURE.md         ← V0 architecture
+│   ├── SECURITY.md             ← security constraints
+│   ├── SETUP.md                ← dev setup guide
+│   └── SESSION_LOG.md          ← build session tracking
 ├── public/
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx
 │   │   ├── page.tsx            → redirect to /kid
-│   │   ├── kid/page.tsx
-│   │   ├── parent/page.tsx
+│   │   ├── kid/page.tsx        (not yet created)
+│   │   ├── parent/page.tsx     (not yet created)
 │   │   └── api/
-│   │       ├── generate/route.ts
-│   │       ├── suggest-word/route.ts
-│   │       ├── gallery/route.ts
-│   │       ├── dictionary/route.ts
-│   │       ├── presets/route.ts
+│   │       ├── generate/route.ts         ✅
+│   │       ├── suggest-word/route.ts     (not yet created)
+│   │       ├── gallery/route.ts          ✅
+│   │       ├── dictionary/route.ts       ✅
+│   │       ├── presets/route.ts          ✅
 │   │       ├── admin/
-│   │       │   ├── auth/route.ts
-│   │       │   ├── queue/route.ts
-│   │       │   ├── approve/route.ts
-│   │       │   ├── reject/route.ts
-│   │       │   └── logout/route.ts
-│   │       └── cron/cleanup/route.ts
+│   │       │   ├── login/route.ts        ✅
+│   │       │   ├── queue/route.ts        ✅
+│   │       │   ├── approve/route.ts      ✅
+│   │       │   ├── reject/route.ts       ✅
+│   │       │   └── logout/route.ts       ✅
+│   │       └── cron/cleanup/route.ts     ✅
 │   ├── lib/
-│   │   ├── db.ts
-│   │   ├── openai.ts
-│   │   ├── prompt-builder.ts
-│   │   ├── moderation.ts
-│   │   ├── rate-limit.ts
-│   │   ├── session.ts
-│   │   ├── sanitize.ts
-│   │   └── constants.ts
-│   ├── components/
+│   │   ├── db.ts               ✅
+│   │   ├── openai.ts           ✅
+│   │   ├── prompt-builder.ts   ✅
+│   │   ├── moderation.ts       ✅
+│   │   ├── rate-limit.ts       ✅
+│   │   ├── session.ts          ✅
+│   │   ├── sanitize.ts         (not yet created)
+│   │   └── constants.ts        ✅
+│   ├── components/             (not yet created)
 │   │   ├── kid/
 │   │   ├── parent/
 │   │   └── shared/
-│   └── hooks/
+│   └── hooks/                  (not yet created)
 │       ├── useDeviceId.ts
 │       └── useRateLimit.ts
-└── vercel.json
+└── vercel.json                 (not yet created)
 ```
+
+## Prisma 7 Notes
+
+- Prisma 7 removed `url` from `datasource` in `schema.prisma` — it now lives in `prisma.config.ts`
+- PrismaClient requires a driver adapter: `new PrismaClient({ adapter })` using `@prisma/adapter-pg`
+- `next lint` was removed in Next.js 16 — use `eslint src/` directly
+- Seed script uses its own `dotenv.config({ path: '.env.local' })` since tsx doesn't auto-load it
 
 ## Coding Rules for Claude Code
 
