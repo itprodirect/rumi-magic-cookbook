@@ -32,6 +32,33 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 
 ## Sessions
 
+### Session 3 — 2026-02-21
+**Agent:** Claude Code (Opus 4.6)
+**Phase:** 4 (Gallery polish)
+**Goal:** Add lightbox modal with download to gallery page
+
+**Completed:**
+- Gallery cards are now clickable buttons that open a lightbox overlay
+- Lightbox shows full image (object-contain), date, and image N of M counter
+- Prev/next navigation via arrow buttons and arrow keys
+- ESC key closes the modal
+- Download button converts base64 to Blob and triggers file save
+- Created src/lib/download.ts helper for base64→Blob conversion
+- Lint clean, build passes (16 routes)
+
+**Files Changed:**
+- src/app/gallery/page.tsx — clickable cards, lightbox modal, keyboard nav
+- src/lib/download.ts — NEW: downloadBase64Image() helper
+
+**Test Steps:**
+1. npm run dev → open /gallery
+2. Click any image card → modal opens with full image
+3. Arrow keys or ← → buttons navigate between images
+4. ESC or click backdrop closes modal
+5. Download button saves a .png file with friendly name
+6. npm run lint → clean
+7. npm run build → succeeds
+
 ### Session 2 - 2026-02-21
 **Agent:** Codex
 **Phase:** 3

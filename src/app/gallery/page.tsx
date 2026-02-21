@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { apiFetch, ApiError } from '@/lib/api-client'
 import { getOrCreateDeviceId } from '@/lib/device-id'
+import { downloadBase64Image } from '@/lib/download'
 
 interface GalleryImage {
   id: string
@@ -17,6 +18,7 @@ export default function GalleryPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [deviceId, setDeviceId] = useState<string | null>(null)
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
   useEffect(() => {
     async function load() {
@@ -40,6 +42,42 @@ export default function GalleryPage() {
     }
     load()
   }, [])
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (selectedIndex === null) return
+
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setSelectedIndex(null)
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault()
+        setSelectedIndex((i) =>
+          i !== null && i < images.length - 1 ? i + 1 : i
+        )
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault()
+        setSelectedIndex((i) => (i !== null && i > 0 ? i - 1 : i))
+      }
+    }
+
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [selectedIndex, images.length])
+
+  const selected = selectedIndex !== null ? images[selectedIndex] : null
+
+  const handleDownload = useCallback(() => {
+    if (!selected) return
+    const date = new Date(selected.createdAt)
+      .toISOString()
+      .slice(0, 10)
+      .replace(/-/g, '')
+    downloadBase64Image(
+      selected.imageData,
+      `rumi-recipe-${date}-${selected.id.slice(0, 8)}.png`
+    )
+  }, [selected])
 
   if (loading) {
     return (
@@ -78,11 +116,14 @@ export default function GalleryPage() {
 
       {images.length > 0 && (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {images.map((img) => (
-            <div
+          {images.map((img, i) => (
+            <button
               key={img.id}
-              className="overflow-hidden rounded border border-zinc-200"
+              type="button"
+              onClick={() => setSelectedIndex(i)}
+              className="overflow-hidden rounded border border-zinc-200 text-left transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={`data:image/png;base64,${img.imageData}`}
                 alt="Recipe card"
@@ -91,8 +132,83 @@ export default function GalleryPage() {
               <div className="p-2 text-xs text-zinc-500">
                 {new Date(img.createdAt).toLocaleDateString()}
               </div>
-            </div>
+            </button>
           ))}
+        </div>
+      )}
+
+      {/* Lightbox modal */}
+      {selected && selectedIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+          onClick={() => setSelectedIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image viewer"
+        >
+          <div
+            className="relative mx-4 flex max-h-[90vh] max-w-3xl flex-col rounded-lg bg-white"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => setSelectedIndex(null)}
+              className="absolute right-2 top-2 z-10 rounded-full bg-white/80 px-2 py-1 text-sm font-medium text-zinc-600 hover:bg-white"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+
+            {/* Image */}
+            <div className="flex-1 overflow-auto p-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`data:image/png;base64,${selected.imageData}`}
+                alt="Recipe card full view"
+                className="mx-auto max-h-[70vh] object-contain"
+              />
+            </div>
+
+            {/* Footer: metadata + actions */}
+            <div className="flex items-center justify-between border-t border-zinc-200 px-4 py-3">
+              <div className="text-sm text-zinc-500">
+                {new Date(selected.createdAt).toLocaleDateString()} · Image{' '}
+                {selectedIndex + 1} of {images.length}
+              </div>
+
+              <div className="flex items-center gap-2">
+                {/* Prev/Next */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedIndex(selectedIndex - 1)}
+                  disabled={selectedIndex === 0}
+                  className="rounded border border-zinc-300 px-2 py-1 text-sm disabled:opacity-30"
+                  aria-label="Previous image"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedIndex(selectedIndex + 1)}
+                  disabled={selectedIndex === images.length - 1}
+                  className="rounded border border-zinc-300 px-2 py-1 text-sm disabled:opacity-30"
+                  aria-label="Next image"
+                >
+                  →
+                </button>
+
+                {/* Download */}
+                <button
+                  type="button"
+                  onClick={handleDownload}
+                  className="rounded bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700"
+                >
+                  Download
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
