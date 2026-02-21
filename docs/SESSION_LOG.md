@@ -32,6 +32,23 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 
 ## Sessions
 
+### Session 7 — 2026-02-21
+**Agent:** Claude Code (Opus 4.6)
+**Phase:** 4 (docs-only)
+**Goal:** Apply Codex must-fix documentation edits — no feature changes
+
+**Completed:**
+- docs/SETUP.md: updated builder description to 4-step wizard flow; mood auto-defaults note; added `npm run setup:dev-secrets` to Quick Start; replaced manual hash/secret commands with recommended `npm run setup:admin-pin` / `npm run setup:session-secret`; updated demo steps for wizard + lightbox + download naming; added gallery payload contract note
+- README.md: updated checklist to reflect 4-step wizard, generate-then-approve flow, IMAGE_* env allowlists, gallery title-only payload, lightbox keyboard nav + download naming; removed create-next-app boilerplate
+- .env.example: steered users to `npm run setup:admin-pin`, `npm run setup:session-secret`, `npm run setup:dev-secrets`; added `$` escaping warning
+- docs/SESSION_LOG.md: this entry
+
+**Files Changed:**
+- docs/SETUP.md — wizard flow, setup scripts, demo steps, gallery notes
+- README.md — checklist rewrite, boilerplate removed
+- .env.example — safe-script recommendations
+- docs/SESSION_LOG.md — Session 7 entry
+
 ### Session 6 - 2026-02-21
 **Agent:** Codex
 **Phase:** 4 (review hardening)

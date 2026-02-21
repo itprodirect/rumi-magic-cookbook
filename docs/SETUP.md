@@ -20,6 +20,7 @@ npm install
 # 3. Set up environment
 cp .env.example .env.local
 # Edit .env.local with your values (see below)
+npm run setup:dev-secrets   # generates ADMIN_PIN_HASH + SESSION_SECRET safely
 
 # 4. Set up database
 npm run db:migrate         # creates tables (prisma migrate dev)
@@ -37,8 +38,8 @@ Copy `.env.example` to `.env.local` and fill in:
 |----------|--------------|
 | `DATABASE_URL` | Neon dashboard → Connection string. Or local: `postgresql://user:pass@localhost:5432/rumi` |
 | `OPENAI_API_KEY` | platform.openai.com → API Keys → Create new |
-| `ADMIN_PIN_HASH` | Run: `node -e "require('bcryptjs').hash('123456', 12).then(h => console.log(h))"` (replace 123456 with your PIN) |
-| `SESSION_SECRET` | Run: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` |
+| `ADMIN_PIN_HASH` | Recommended: `npm run setup:admin-pin`. Manual: `node -e "require('bcryptjs').hash('YOUR_PIN', 12).then(h => console.log(h))"` — escape `$` as `\$` in .env files |
+| `SESSION_SECRET` | Recommended: `npm run setup:session-secret`. Must be 32+ chars |
 | `CRON_SECRET` | Run: `node -e "console.log(require('crypto').randomBytes(16).toString('hex'))"` |
 | `IMAGE_MODEL` | Optional. Allowed: `gpt-image-1.5` (default), `gpt-image-1`, `gpt-image-1-mini` |
 | `IMAGE_QUALITY` | Optional. Allowed: `medium` (default), `low` |
@@ -190,10 +191,11 @@ curl "http://localhost:3000/api/gallery?deviceId=<uuid-v4>"
 Once you have the dev server running (`npm run dev`) and the database seeded:
 
 1. **Open the builder** at http://localhost:3000
-   - Select a palette, style, theme, and mood (required)
-   - Optionally pick effects, addons, steps, ingredients, title, creature
-   - Or use a preset to auto-fill everything
-   - Click "Create Recipe Card"
+   - The builder is a 4-step wizard: **Preset → Core Picks → Extras → Review**
+   - Step 0: pick a preset (or "Surprise Me!" / "Skip")
+   - Step 1: select theme, style, palette (required); creature and title (optional)
+   - Step 2: toggle effect/addon chips; open Advanced for mood, steps, ingredients (mood auto-defaults if skipped)
+   - Step 3: review summary → submit
    - You should see "Recipe submitted! ID: xxxxxxxx... Status: pending"
 
 2. **Open the admin panel** at http://localhost:3000/admin
@@ -203,7 +205,10 @@ Once you have the dev server running (`npm run dev`) and the database seeded:
    - If moderation passes, status changes to "approved"
 
 3. **Check the gallery** at http://localhost:3000/gallery
-   - Your approved image should appear in the grid
+   - Your approved image should appear in the grid with its title below the thumbnail
+   - Click any card to open the lightbox (arrow keys / buttons to navigate, ESC to close)
+   - Download button saves as `rumi-<title>-<date>.png` (falls back to ID prefix if no title)
+   - The gallery API returns only `{ id, tokenIds.title, imageData, createdAt }` — no prompt text is exposed
    - The gallery is scoped to your device ID (stored in localStorage)
 
 4. **Test rejection**: submit another recipe, then reject it from admin — verify it doesn't appear in the gallery
