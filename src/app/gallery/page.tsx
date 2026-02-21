@@ -8,16 +8,14 @@ import { downloadBase64Image } from '@/lib/download'
 
 interface GalleryImage {
   id: string
-  tokenIds: Record<string, string | string[]>
+  title: string | null
   imageData: string
   createdAt: string
 }
 
-/** Extract the title label from tokenIds, if present. */
+/** Return the server-provided title when present. */
 function getTitle(img: GalleryImage): string | null {
-  const val = img.tokenIds?.title
-  if (typeof val === 'string' && val.trim()) return val.trim()
-  return null
+  return img.title && img.title.trim() ? img.title.trim() : null
 }
 
 /** Sanitize a string for use as a filename segment. */

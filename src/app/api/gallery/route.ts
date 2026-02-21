@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 
+function extractTitle(tokenIds: unknown): string | null {
+  if (!tokenIds || typeof tokenIds !== 'object' || Array.isArray(tokenIds)) {
+    return null
+  }
+
+  const title = (tokenIds as Record<string, unknown>).title
+  if (typeof title !== 'string') {
+    return null
+  }
+
+  const trimmed = title.trim()
+  return trimmed.length > 0 ? trimmed : null
+}
+
 export async function GET(request: NextRequest) {
   try {
     const deviceId = request.nextUrl.searchParams.get('deviceId')
@@ -11,7 +25,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const images = await prisma.generationRequest.findMany({
+    const rows = await prisma.generationRequest.findMany({
       where: { deviceId, status: 'approved' },
       select: {
         id: true,
@@ -21,6 +35,13 @@ export async function GET(request: NextRequest) {
       },
       orderBy: { createdAt: 'desc' },
     })
+
+    const images = rows.map(({ id, tokenIds, imageData, createdAt }) => ({
+      id,
+      title: extractTitle(tokenIds),
+      imageData,
+      createdAt,
+    }))
 
     return NextResponse.json({ images })
   } catch (error) {
