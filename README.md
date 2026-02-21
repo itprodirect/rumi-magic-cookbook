@@ -17,6 +17,8 @@ Kid-safe recipe-card image generator with parent approval controls.
 
 - Bcrypt hashes start with `$` and Next.js dotenv expansion may eat unescaped `$` tokens.
 - Use `npm run setup:admin-pin` to generate a safe `.env.development.local`, or escape dollars as `\\$`.
+- `SESSION_SECRET` must be 32+ chars. Use `npm run setup:session-secret`.
+- One-shot local setup: `npm run setup:dev-secrets`.
 
 See `docs/SETUP.md` for full setup and endpoint details.
 

@@ -49,6 +49,9 @@ Copy `.env.example` to `.env.local` and fill in:
 - Bcrypt hashes contain `$` and Next.js dotenv expansion can treat `$...` as variable references.
 - Escape every dollar as `\\$` if you store the hash manually.
 - Easiest safe path: run `npm run setup:admin-pin` to generate `.env.development.local`.
+- `SESSION_SECRET` must be at least 32 characters.
+- Generate/update it safely with `npm run setup:session-secret`.
+- Or run `npm run setup:dev-secrets` to set both admin PIN hash and session secret.
 - Development env load order is: `.env.development.local` then `.env.local`.
 
 ## Windows / WSL2 Notes

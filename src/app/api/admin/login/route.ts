@@ -80,6 +80,21 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true })
   } catch (error) {
     console.error('POST /api/admin/login error:', error)
+
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      error instanceof Error &&
+      error.message.includes('SESSION_SECRET')
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            'SESSION_SECRET missing/too short. Set SESSION_SECRET to 32+ chars (run: npm run setup:session-secret).',
+        },
+        { status: 500 }
+      )
+    }
+
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

@@ -11,6 +11,8 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
     "setup:admin-pin": "node scripts/setup-admin-pin.mjs",
+    "setup:session-secret": "node scripts/setup-session-secret.mjs",
+    "setup:dev-secrets": "npm run setup:admin-pin && npm run setup:session-secret",
     "env:check": "node scripts/env-check.mjs"
   },
   "dependencies": {
