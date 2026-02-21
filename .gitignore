@@ -1,0 +1,8 @@
+node_modules
+.next
+dist
+.DS_Store
+
+# env (never commit secrets)
+.env*
+!.env.example
