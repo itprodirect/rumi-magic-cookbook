@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
 import { createSession } from '@/lib/session'
 import { PIN_MAX_ATTEMPTS, PIN_LOCKOUT_MINUTES } from '@/lib/constants'
+import { getAdminPinHash } from '@/lib/admin-env'
 
 // In-memory brute-force tracker (resets on server restart — acceptable for V0)
 const attempts = new Map<string, { count: number; lastAttempt: number }>()
@@ -52,13 +53,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'PIN is required' }, { status: 400 })
     }
 
-    const hash = process.env.ADMIN_PIN_HASH
-    if (!hash) {
-      console.error('ADMIN_PIN_HASH not configured')
-      return NextResponse.json(
-        { error: 'Server configuration error' },
-        { status: 500 }
-      )
+    let hash: string
+    try {
+      hash = getAdminPinHash()
+    } catch (envError) {
+      const message =
+        envError instanceof Error
+          ? envError.message
+          : 'Server configuration error'
+      console.error('ADMIN_PIN_HASH not configured:', message)
+      return NextResponse.json({ error: message }, { status: 500 })
     }
 
     const valid = await bcrypt.compare(pin, hash)
