@@ -73,3 +73,5 @@ Desktop.ini
 .vercel
 
 .claude/
+.env.development.local
+cookies.txt

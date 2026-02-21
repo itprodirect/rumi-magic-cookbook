@@ -44,6 +44,16 @@ Copy `.env.example` to `.env.local` and fill in:
 | `MAX_DAILY_PER_IP` | Reserved for upcoming IP limiter support (default `20`) |
 | `MAX_DAILY_GLOBAL` | Daily request cap across all devices (default `100`) |
 
+### ADMIN_PIN_HASH Troubleshooting
+
+- Bcrypt hashes contain `$` and Next.js dotenv expansion can treat `$...` as variable references.
+- Escape every dollar as `\\$` if you store the hash manually.
+- Easiest safe path: run `npm run setup:admin-pin` to generate `.env.development.local`.
+- `SESSION_SECRET` must be at least 32 characters.
+- Generate/update it safely with `npm run setup:session-secret`.
+- Or run `npm run setup:dev-secrets` to set both admin PIN hash and session secret.
+- Development env load order is: `.env.development.local` then `.env.local`.
+
 ## Windows / WSL2 Notes
 
 ### Turbopack root resolution issue
@@ -160,6 +170,15 @@ curl -X POST http://localhost:3000/api/cron/cleanup \
 ```bash
 curl "http://localhost:3000/api/gallery?deviceId=<uuid-v4>"
 ```
+
+## Demo-Ready Checklist
+
+- `npm run db:migrate` and `npm run db:seed` succeed.
+- `npm run lint` and `npm run build` succeed.
+- `/` submits valid `/api/generate` payloads and returns pending IDs.
+- `/admin` login works and unauthenticated calls to `/api/admin/queue|approve|reject|logout` return `401`.
+- `/gallery` shows an empty state when no approved items and an error state on API failures.
+- `/api/cron/cleanup` only accepts `Authorization: Bearer <CRON_SECRET>`.
 
 ## Local Demo Flow (End-to-End)
 

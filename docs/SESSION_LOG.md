@@ -32,6 +32,17 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 
 ## Sessions
 
+### Session 2 - 2026-02-21
+**Agent:** Codex
+**Phase:** 3
+**Goal:** Fix ADMIN_PIN_HASH dotenv handling for local admin login and add safe helper scripts
+
+**Completed:**
+- Added `src/lib/admin-env.ts` fallback parsing for `ADMIN_PIN_HASH` from `.env.development.local` then `.env.local`
+- Updated `POST /api/admin/login` to use `getAdminPinHash()` with actionable 500 config errors
+- Added `npm run setup:admin-pin` and `npm run env:check`
+- Updated setup docs with bcrypt `$` escaping guidance and development env load order
+
 ### Session 1 — 2026-02-21
 **Agent:** Claude Code (Opus 4.6)
 **Phase:** 1 + 2
