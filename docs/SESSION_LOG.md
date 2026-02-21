@@ -73,7 +73,7 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 - Admin auth route is at /api/admin/login (not /api/admin/auth as originally planned)
 - Image generation happens at approve time, not at generate time (pending requests have no image)
 - Rate limiting is device + global only in V0 (no IP-based tracking without persistent IP storage)
-- Codex review pending before continuing to Phase 3/4
+- Codex review completed; apply blocker/high patches before Phase 3/4
 
 ### Session 0 — 2026-02-21
 **Agent:** Manual (Opus planning)

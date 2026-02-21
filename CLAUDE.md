@@ -29,7 +29,7 @@ All secrets are in `.env.local` (never committed). See `.env.example` for the fu
 - `DATABASE_URL` — Neon connection string (prod) or local Postgres (dev)
 - `ADMIN_PIN_HASH` — bcrypt hash of the 6-digit parent PIN
 - `SESSION_SECRET` — 64-char hex string for HMAC cookie signing
-- `CRON_SECRET` — secret for Vercel cron auth header
+- `CRON_SECRET` — secret for cron auth (`Authorization: Bearer <CRON_SECRET>`)
 
 ## Architecture
 
@@ -85,11 +85,11 @@ These apply to every line of code. Violations are blockers.
 - [x] `GET  /api/admin/queue` — pending generations + suggestions (authed)
 - [x] `POST /api/admin/approve` — generate image via OpenAI → moderate image → store (authed)
 - [x] `POST /api/admin/reject` — set rejected + null image (authed)
-- [x] `GET  /api/gallery` — approved images for device_id
+- [x] `GET  /api/gallery` — approved images for `deviceId` query param
 - [x] `GET  /api/dictionary` — active items (labels only, no prompt_text)
 - [x] `GET  /api/presets` — active presets
 - [x] `POST /api/admin/logout` — clear session
-- [x] `POST /api/cron/cleanup` — retention enforcement (CRON_SECRET required)
+- [x] `POST /api/cron/cleanup` — retention enforcement (`Authorization: Bearer <CRON_SECRET>` required)
 
 ### Phase 4 — Kid UI
 - [ ] Builder page (`/kid`) with category pickers, preset selector, submit

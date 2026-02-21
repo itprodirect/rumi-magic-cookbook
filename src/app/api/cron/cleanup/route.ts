@@ -1,11 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server'
+import crypto from 'node:crypto'
 import { prisma } from '@/lib/db'
 import { PENDING_RETENTION_DAYS, APPROVED_RETENTION_DAYS } from '@/lib/constants'
 
+function parseBearerToken(header: string | null): string | null {
+  if (!header) return null
+
+  const [scheme, token, ...rest] = header.trim().split(/\s+/)
+  if (rest.length > 0) return null
+  if (!scheme || scheme.toLowerCase() !== 'bearer') return null
+  if (!token) return null
+
+  return token
+}
+
+function safeEquals(left: string, right: string): boolean {
+  const leftBuf = Buffer.from(left)
+  const rightBuf = Buffer.from(right)
+  if (leftBuf.length !== rightBuf.length) return false
+  return crypto.timingSafeEqual(leftBuf, rightBuf)
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const secret = request.headers.get('authorization')?.replace('Bearer ', '')
-    if (!secret || secret !== process.env.CRON_SECRET) {
+    const configuredSecret = process.env.CRON_SECRET
+    if (!configuredSecret) {
+      console.error('CRON_SECRET not configured')
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      )
+    }
+
+    const providedSecret = parseBearerToken(request.headers.get('authorization'))
+    if (!providedSecret || !safeEquals(providedSecret, configuredSecret)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -27,12 +55,24 @@ export async function POST(request: NextRequest) {
 
     // Delete expired approved requests
     const deletedApproved = await prisma.generationRequest.deleteMany({
-      where: { status: 'approved', createdAt: { lt: approvedCutoff } },
+      where: {
+        status: 'approved',
+        OR: [
+          { reviewedAt: { lt: approvedCutoff } },
+          { reviewedAt: null, createdAt: { lt: approvedCutoff } },
+        ],
+      },
     })
 
     // Delete expired rejected requests
     const deletedRejected = await prisma.generationRequest.deleteMany({
-      where: { status: 'rejected', createdAt: { lt: rejectedCutoff } },
+      where: {
+        status: 'rejected',
+        OR: [
+          { reviewedAt: { lt: rejectedCutoff } },
+          { reviewedAt: null, createdAt: { lt: rejectedCutoff } },
+        ],
+      },
     })
 
     // Delete expired pending suggestions

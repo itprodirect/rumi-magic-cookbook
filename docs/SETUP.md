@@ -40,6 +40,9 @@ Copy `.env.example` to `.env.local` and fill in:
 | `ADMIN_PIN_HASH` | Run: `node -e "require('bcryptjs').hash('123456', 12).then(h => console.log(h))"` (replace 123456 with your PIN) |
 | `SESSION_SECRET` | Run: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` |
 | `CRON_SECRET` | Run: `node -e "console.log(require('crypto').randomBytes(16).toString('hex'))"` |
+| `MAX_DAILY_PER_DEVICE` | Daily request cap per device (default `10`) |
+| `MAX_DAILY_PER_IP` | Reserved for upcoming IP limiter support (default `20`) |
+| `MAX_DAILY_GLOBAL` | Daily request cap across all devices (default `100`) |
 
 ## Windows / WSL2 Notes
 
@@ -134,6 +137,29 @@ To test that moderation is working without burning image generation credits:
 1. The `/api/generate` route has a moderation step BEFORE calling the image API
 2. Compose a prompt with safe tokens and verify the moderation passes (check server logs for request ID + status)
 3. To test image moderation, you'll need at least one successful generation
+
+## Cron Cleanup Endpoint
+
+`POST /api/cron/cleanup` requires this exact header format:
+
+```bash
+Authorization: Bearer <CRON_SECRET>
+```
+
+Example:
+
+```bash
+curl -X POST http://localhost:3000/api/cron/cleanup \
+  -H "Authorization: Bearer $CRON_SECRET"
+```
+
+## Gallery Endpoint
+
+`GET /api/gallery` requires `deviceId` as a query param.
+
+```bash
+curl "http://localhost:3000/api/gallery?deviceId=<uuid-v4>"
+```
 
 ## Common Issues
 

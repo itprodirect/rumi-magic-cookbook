@@ -13,10 +13,22 @@ export const SPOOKY_CUTE_EXTRA =
   'NOT scary, NOT horror, soft moonlight, smiling faces, ' +
   'round shapes, pastel accents, cozy and friendly'
 
+function envInt(name: string, fallback: number): number {
+  const raw = process.env[name]
+  if (!raw) return fallback
+
+  const parsed = Number.parseInt(raw, 10)
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    throw new Error(`${name} must be a positive integer`)
+  }
+
+  return parsed
+}
+
 // --- Rate limits ---
-export const MAX_DAILY_PER_DEVICE = 10
-export const MAX_DAILY_PER_IP = 20
-export const MAX_DAILY_GLOBAL = 100
+export const MAX_DAILY_PER_DEVICE = envInt('MAX_DAILY_PER_DEVICE', 10)
+export const MAX_DAILY_PER_IP = envInt('MAX_DAILY_PER_IP', 20)
+export const MAX_DAILY_GLOBAL = envInt('MAX_DAILY_GLOBAL', 100)
 
 // --- Input limits ---
 export const SUGGESTION_MAX_LENGTH = 60

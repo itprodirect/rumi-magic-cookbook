@@ -13,9 +13,9 @@ The primary user is a 9-year-old child. Every design decision defaults to the sa
 | API key exposure | Developer error | `server-only` import guard; no `NEXT_PUBLIC_` prefix; CI grep check |
 | Parent PIN bypass | Child or sibling | Server-side bcrypt; HttpOnly cookie; brute-force lockout |
 | PII in suggestions | Child typing personal info | Regex detection (names, schools, addresses, phones) + length cap |
-| Rate limit bypass | Clear localStorage | Secondary IP-based limit (20/day); global cap (100/day) |
+| Rate limit bypass | Clear localStorage | Device limit + global cap enforced in DB; persistent IP limiter planned |
 | XSS via stored suggestion | Crafted input | React auto-escaping; never use `dangerouslySetInnerHTML`; strip HTML chars in sanitizer |
-| Cost attack | Automated requests | Triple rate limit (device + IP + global); OpenAI spending cap |
+| Cost attack | Automated requests | Device + global limits; OpenAI spending cap |
 
 ## Prompt Safety Architecture
 
@@ -70,19 +70,19 @@ round shapes, pastel accents, cozy and friendly
 
 - Minimum 6 digits (enforced at setup time, not in code — the hash is pre-computed)
 - Stored as bcrypt hash in `ADMIN_PIN_HASH` env var
-- Verified server-side only via `POST /api/admin/auth`
+- Verified server-side only via `POST /api/admin/login`
 - On success: set `HttpOnly`, `Secure`, `SameSite=Strict` cookie containing HMAC-signed payload
 - Cookie TTL: 30 minutes, sliding (refreshed on each authenticated request)
 
 ### Brute-force protection
 
 - Track failed PIN attempts per IP (in-memory or simple DB counter)
-- After 5 failures in 15 minutes: lock out that IP for 60 minutes
+- After 5 failures: lock out that IP for 60 minutes from the latest failed attempt
 - Return generic "Incorrect PIN" message (no hints)
 
 ### Session verification
 
-- Every `/api/admin/*` route calls `verifySession(request)` as its first action
+- Every protected `/api/admin/*` route calls `verifySession()` as its first action
 - Invalid/expired/missing cookie → 401 immediately
 - No session state on the server — the cookie itself contains the signed payload with expiry
 

@@ -1,8 +1,13 @@
 import { NextResponse } from 'next/server'
-import { destroySession } from '@/lib/session'
+import { destroySession, verifySession } from '@/lib/session'
 
 export async function POST() {
   try {
+    const authenticated = await verifySession()
+    if (!authenticated) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     await destroySession()
     return NextResponse.json({ ok: true })
   } catch (error) {

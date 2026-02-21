@@ -4,6 +4,8 @@ import { verifySession } from '@/lib/session'
 import { openai } from '@/lib/openai'
 import { moderateImage } from '@/lib/moderation'
 
+const MAX_IMAGE_BASE64_LENGTH = 8 * 1024 * 1024 // ~8MB base64 payload cap
+
 export async function POST(request: NextRequest) {
   try {
     const authenticated = await verifySession()
@@ -48,6 +50,25 @@ export async function POST(request: NextRequest) {
         { error: 'Image generation failed' },
         { status: 502 }
       )
+    }
+
+    if (base64Image.length > MAX_IMAGE_BASE64_LENGTH) {
+      console.error('OpenAI image payload exceeds cap for request:', id)
+
+      await prisma.generationRequest.update({
+        where: { id },
+        data: {
+          status: 'rejected',
+          imageData: null,
+          reviewedAt: new Date(),
+        },
+      })
+
+      return NextResponse.json({
+        id,
+        status: 'rejected',
+        reason: 'Image payload too large',
+      })
     }
 
     // Post-generation image moderation

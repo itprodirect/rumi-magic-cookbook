@@ -38,21 +38,39 @@ function verify(token: string): SessionPayload | null {
   const expectedHmac = crypto
     .createHmac(ALGORITHM, getSecret())
     .update(encoded)
-    .digest('base64url')
+    .digest()
 
-  if (!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(expectedHmac))) {
+  const actualHmac = Buffer.from(hmac, 'base64url')
+  if (actualHmac.length !== expectedHmac.length) {
     return null
   }
 
-  const payload: SessionPayload = JSON.parse(
-    Buffer.from(encoded, 'base64url').toString()
-  )
-
-  if (payload.exp < Date.now() / 1000) {
+  if (!crypto.timingSafeEqual(actualHmac, expectedHmac)) {
     return null
   }
 
-  return payload
+  let payload: unknown
+  try {
+    payload = JSON.parse(Buffer.from(encoded, 'base64url').toString())
+  } catch {
+    return null
+  }
+
+  if (
+    !payload ||
+    typeof payload !== 'object' ||
+    (payload as SessionPayload).role !== 'admin' ||
+    typeof (payload as SessionPayload).iat !== 'number' ||
+    typeof (payload as SessionPayload).exp !== 'number'
+  ) {
+    return null
+  }
+
+  if ((payload as SessionPayload).exp < Date.now() / 1000) {
+    return null
+  }
+
+  return payload as SessionPayload
 }
 
 export async function createSession(): Promise<void> {
@@ -104,5 +122,11 @@ export async function verifySession(): Promise<boolean> {
 
 export async function destroySession(): Promise<void> {
   const cookieStore = await cookies()
-  cookieStore.delete(COOKIE_NAME)
+  cookieStore.set(COOKIE_NAME, '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    path: '/',
+    maxAge: 0,
+  })
 }
