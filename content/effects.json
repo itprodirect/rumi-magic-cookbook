@@ -1,0 +1,115 @@
+[
+  {
+    "label": "Sparkles",
+    "prompt_text": "sparkles and glitter dust",
+    "tags": [
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Glitter Dust",
+    "prompt_text": "glitter dust floating gently",
+    "tags": [
+      "glitter"
+    ]
+  },
+  {
+    "label": "Star Confetti",
+    "prompt_text": "tiny star confetti floating",
+    "tags": [
+      "stars",
+      "confetti"
+    ]
+  },
+  {
+    "label": "Heart Confetti",
+    "prompt_text": "tiny hearts floating",
+    "tags": [
+      "hearts",
+      "confetti"
+    ]
+  },
+  {
+    "label": "Rainbow Glow",
+    "prompt_text": "soft rainbow glow aura",
+    "tags": [
+      "rainbow",
+      "glow"
+    ]
+  },
+  {
+    "label": "Neon Outline",
+    "prompt_text": "neon outline around main shapes",
+    "tags": [
+      "neon",
+      "outline"
+    ]
+  },
+  {
+    "label": "Glow Aura",
+    "prompt_text": "soft glowing aura",
+    "tags": [
+      "glow"
+    ]
+  },
+  {
+    "label": "Bokeh Lights",
+    "prompt_text": "soft bokeh lights in background",
+    "tags": [
+      "bokeh"
+    ]
+  },
+  {
+    "label": "Magic Swirls",
+    "prompt_text": "gentle magical swirls and fairy dust trails",
+    "tags": [
+      "magic"
+    ]
+  },
+  {
+    "label": "Twinkling Stars",
+    "prompt_text": "twinkling stars scattered",
+    "tags": [
+      "stars"
+    ]
+  },
+  {
+    "label": "Soft Clouds",
+    "prompt_text": "soft clouds with glow",
+    "tags": [
+      "clouds"
+    ]
+  },
+  {
+    "label": "Sticker Shadow",
+    "prompt_text": "sticker-style drop shadows",
+    "tags": [
+      "sticker",
+      "shadow"
+    ]
+  },
+  {
+    "label": "Confetti Border",
+    "prompt_text": "confetti border (stars and hearts)",
+    "tags": [
+      "border",
+      "confetti"
+    ]
+  },
+  {
+    "label": "Glitter Frame",
+    "prompt_text": "glitter frame border",
+    "tags": [
+      "border",
+      "glitter"
+    ]
+  },
+  {
+    "label": "Sparkle Trail",
+    "prompt_text": "sparkle trail swoosh across the card",
+    "tags": [
+      "sparkle",
+      "trail"
+    ]
+  }
+]

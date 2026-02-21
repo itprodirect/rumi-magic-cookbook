@@ -1,0 +1,508 @@
+[
+  {
+    "label": "Open the magic book",
+    "prompt_text": "open the magic cookbook and reveal glowing pages",
+    "tags": [
+      "magic",
+      "book"
+    ]
+  },
+  {
+    "label": "Stir in rainbow",
+    "prompt_text": "stir in a bright rainbow glow",
+    "tags": [
+      "rainbow",
+      "color"
+    ]
+  },
+  {
+    "label": "Add sparkles",
+    "prompt_text": "add shimmering sparkles and glitter dust",
+    "tags": [
+      "sparkles"
+    ]
+  },
+  {
+    "label": "Sprinkle tiny stars",
+    "prompt_text": "sprinkle tiny twinkling stars",
+    "tags": [
+      "stars"
+    ]
+  },
+  {
+    "label": "Pour a potion",
+    "prompt_text": "pour a colorful potion with friendly bubbles",
+    "tags": [
+      "potion",
+      "magic"
+    ]
+  },
+  {
+    "label": "Whisk pancake magic",
+    "prompt_text": "whisk pancake batter with magical swirls",
+    "tags": [
+      "pancakes",
+      "magic"
+    ]
+  },
+  {
+    "label": "Flip the pancakes",
+    "prompt_text": "flip pancakes in a fun cartoon style (no mess)",
+    "tags": [
+      "pancakes",
+      "cute"
+    ]
+  },
+  {
+    "label": "Add syrup swirl",
+    "prompt_text": "add a syrup swirl that looks like a golden spiral",
+    "tags": [
+      "pancakes",
+      "sweet"
+    ]
+  },
+  {
+    "label": "Add whipped cloud",
+    "prompt_text": "add a whipped-cream cloud puff",
+    "tags": [
+      "clouds",
+      "cute"
+    ]
+  },
+  {
+    "label": "Make it neon",
+    "prompt_text": "turn on a neon outline glow around everything",
+    "tags": [
+      "neon",
+      "glow"
+    ]
+  },
+  {
+    "label": "Make it puffy",
+    "prompt_text": "make shapes puffy, soft, and bouncy like marshmallows",
+    "tags": [
+      "puffy",
+      "bouncy"
+    ]
+  },
+  {
+    "label": "Add heart confetti",
+    "prompt_text": "add tiny floating heart confetti",
+    "tags": [
+      "hearts"
+    ]
+  },
+  {
+    "label": "Add star confetti",
+    "prompt_text": "add star-shaped confetti drifting gently",
+    "tags": [
+      "stars"
+    ]
+  },
+  {
+    "label": "Paint with glitter pen",
+    "prompt_text": "add glitter gel-pen accents and doodles",
+    "tags": [
+      "glitter",
+      "doodle"
+    ]
+  },
+  {
+    "label": "Draw cute doodles",
+    "prompt_text": "draw cute doodles on the page margins (kid style)",
+    "tags": [
+      "doodle",
+      "cute"
+    ]
+  },
+  {
+    "label": "Add a cute face",
+    "prompt_text": "add a friendly cute face with big eyes and a smile",
+    "tags": [
+      "face",
+      "cute"
+    ]
+  },
+  {
+    "label": "Add a bow on top",
+    "prompt_text": "place a cute bow on top as a finishing touch",
+    "tags": [
+      "bow",
+      "cute"
+    ]
+  },
+  {
+    "label": "Summon cloud kingdom",
+    "prompt_text": "summon fluffy clouds and a dreamy sky background",
+    "tags": [
+      "clouds",
+      "dreamy"
+    ]
+  },
+  {
+    "label": "Zoom to outer space",
+    "prompt_text": "transition into cute outer space with planets and stars",
+    "tags": [
+      "space",
+      "stars"
+    ]
+  },
+  {
+    "label": "Add planet rings",
+    "prompt_text": "add pastel planet rings and tiny comets (friendly)",
+    "tags": [
+      "space",
+      "cute"
+    ]
+  },
+  {
+    "label": "Spooky-cute night glow",
+    "prompt_text": "make it night-glow spooky-cute (NOT scary), with cozy moonlight",
+    "tags": [
+      "spooky-cute",
+      "night"
+    ]
+  },
+  {
+    "label": "Add friendly ghost sticker",
+    "prompt_text": "add a tiny friendly ghost sticker (cute, smiling, not scary)",
+    "tags": [
+      "spooky-cute",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Seal with a magic stamp",
+    "prompt_text": "seal the recipe with a cute magic stamp and sparkles",
+    "tags": [
+      "stamp",
+      "magic"
+    ]
+  },
+  {
+    "label": "Frame it like a card",
+    "prompt_text": "frame the final art like a collectible recipe card",
+    "tags": [
+      "card",
+      "layout"
+    ]
+  },
+  {
+    "label": "Final glitter blast",
+    "prompt_text": "finish with a gentle glitter burst and soft glow",
+    "tags": [
+      "sparkles",
+      "finish"
+    ]
+  },
+  {
+    "label": "Draw a sparkly border",
+    "prompt_text": "add a sparkly border frame around the card",
+    "tags": [
+      "border",
+      "sparkles"
+    ]
+  },
+  {
+    "label": "Add a neon edge",
+    "prompt_text": "add a soft neon edge glow around the card",
+    "tags": [
+      "neon",
+      "border"
+    ]
+  },
+  {
+    "label": "Add tiny doodle stars",
+    "prompt_text": "add tiny doodle stars in the margins",
+    "tags": [
+      "doodle",
+      "stars"
+    ]
+  },
+  {
+    "label": "Add tiny doodle hearts",
+    "prompt_text": "add tiny doodle hearts in the margins",
+    "tags": [
+      "doodle",
+      "hearts"
+    ]
+  },
+  {
+    "label": "Add sprinkles rain",
+    "prompt_text": "add a gentle rain of sprinkles (cute)",
+    "tags": [
+      "sprinkles",
+      "cute"
+    ]
+  },
+  {
+    "label": "Add marshmallow puffs",
+    "prompt_text": "add soft marshmallow puffs floating",
+    "tags": [
+      "puffy",
+      "cute"
+    ]
+  },
+  {
+    "label": "Add cloud swirls",
+    "prompt_text": "add soft cloud swirls behind the text",
+    "tags": [
+      "clouds"
+    ]
+  },
+  {
+    "label": "Add a moon badge",
+    "prompt_text": "add a small moon badge icon near the title",
+    "tags": [
+      "moon",
+      "badge"
+    ]
+  },
+  {
+    "label": "Add a star badge",
+    "prompt_text": "add a small star badge icon near the title",
+    "tags": [
+      "stars",
+      "badge"
+    ]
+  },
+  {
+    "label": "Add a tiny rainbow",
+    "prompt_text": "add a tiny rainbow sticker near the footer",
+    "tags": [
+      "rainbow",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Make it extra shiny",
+    "prompt_text": "make the artwork extra shiny and glossy (toy-like)",
+    "tags": [
+      "shiny",
+      "toy"
+    ]
+  },
+  {
+    "label": "Make it extra cute",
+    "prompt_text": "increase cuteness: round shapes, friendly smiles",
+    "tags": [
+      "cute"
+    ]
+  },
+  {
+    "label": "Make it super clean",
+    "prompt_text": "clean outlines, uncluttered layout, readable text",
+    "tags": [
+      "clean"
+    ]
+  },
+  {
+    "label": "Add bubble letters",
+    "prompt_text": "use bubble-letter title text, easy to read",
+    "tags": [
+      "text",
+      "title"
+    ]
+  },
+  {
+    "label": "Add sticker shadows",
+    "prompt_text": "add sticker-like drop shadows behind icons",
+    "tags": [
+      "sticker"
+    ]
+  },
+  {
+    "label": "Add glitter corners",
+    "prompt_text": "glitter in the four corners of the card",
+    "tags": [
+      "glitter",
+      "border"
+    ]
+  },
+  {
+    "label": "Add a cute stamp",
+    "prompt_text": "add a cute stamp in the footer area",
+    "tags": [
+      "stamp"
+    ]
+  },
+  {
+    "label": "Add confetti border",
+    "prompt_text": "add a confetti border (stars and hearts)",
+    "tags": [
+      "confetti",
+      "border"
+    ]
+  },
+  {
+    "label": "Add tiny planets",
+    "prompt_text": "add tiny cute planets near the steps list",
+    "tags": [
+      "space"
+    ]
+  },
+  {
+    "label": "Add a cozy glow",
+    "prompt_text": "add a warm cozy glow behind the card",
+    "tags": [
+      "cozy",
+      "glow"
+    ]
+  },
+  {
+    "label": "Make it bouncy",
+    "prompt_text": "make elements feel bouncy and puffy (cartoon physics)",
+    "tags": [
+      "bouncy",
+      "puffy"
+    ]
+  },
+  {
+    "label": "Add a sparkle trail",
+    "prompt_text": "add a sparkle trail sweeping across the card",
+    "tags": [
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Add a magic swirl arrow",
+    "prompt_text": "add a magic swirl arrow pointing to the next step",
+    "tags": [
+      "magic",
+      "steps"
+    ]
+  },
+  {
+    "label": "Add a cute checklist",
+    "prompt_text": "add a cute checklist style for the steps",
+    "tags": [
+      "steps",
+      "layout"
+    ]
+  },
+  {
+    "label": "Final gentle glow",
+    "prompt_text": "final gentle glow pass (not too bright)",
+    "tags": [
+      "finish",
+      "glow"
+    ]
+  },
+  {
+    "label": "Summon bubble water",
+    "prompt_text": "summon bubbly water with sparkles",
+    "tags": [
+      "water",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Add axolotl mascot",
+    "prompt_text": "place a cute axolotl mascot as the main character",
+    "tags": [
+      "axolotl",
+      "hero"
+    ]
+  },
+  {
+    "label": "Paint gill glow",
+    "prompt_text": "give the axolotl gills a soft neon glow",
+    "tags": [
+      "axolotl",
+      "glow"
+    ]
+  },
+  {
+    "label": "Sprinkle sea stars",
+    "prompt_text": "sprinkle tiny cute sea stars around the card",
+    "tags": [
+      "stars",
+      "sea"
+    ]
+  },
+  {
+    "label": "Add lily pad stickers",
+    "prompt_text": "add lily pad stickers in the corners",
+    "tags": [
+      "sticker",
+      "water"
+    ]
+  },
+  {
+    "label": "Make it underwater cozy",
+    "prompt_text": "make it cozy underwater (bright, friendly, not dark)",
+    "tags": [
+      "cozy",
+      "sea"
+    ]
+  },
+  {
+    "label": "Add heart bubbles",
+    "prompt_text": "add heart-shaped bubbles floating up",
+    "tags": [
+      "hearts",
+      "bubble"
+    ]
+  },
+  {
+    "label": "Add neon wave outline",
+    "prompt_text": "add a neon wave outline around the layout",
+    "tags": [
+      "neon",
+      "border"
+    ]
+  },
+  {
+    "label": "Add glitter fins",
+    "prompt_text": "add glitter accents to fins and tail (cute)",
+    "tags": [
+      "glitter"
+    ]
+  },
+  {
+    "label": "Give it sticker shadows",
+    "prompt_text": "add sticker-style shadows behind icons",
+    "tags": [
+      "sticker"
+    ]
+  },
+  {
+    "label": "Add pond lantern glow",
+    "prompt_text": "add a soft lantern glow near the footer stamp",
+    "tags": [
+      "glow",
+      "cozy"
+    ]
+  },
+  {
+    "label": "Seal with axolotl stamp",
+    "prompt_text": "seal the recipe with a cute axolotl stamp",
+    "tags": [
+      "stamp",
+      "axolotl"
+    ]
+  },
+  {
+    "label": "Add aqua confetti",
+    "prompt_text": "add aqua confetti (stars + hearts)",
+    "tags": [
+      "confetti"
+    ]
+  },
+  {
+    "label": "Make it super puffy",
+    "prompt_text": "make everything puffy and bouncy (cartoon)",
+    "tags": [
+      "puffy",
+      "bouncy"
+    ]
+  },
+  {
+    "label": "Final sparkle splash",
+    "prompt_text": "finish with a gentle sparkle splash",
+    "tags": [
+      "finish",
+      "sparkle"
+    ]
+  }
+]

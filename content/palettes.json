@@ -1,0 +1,78 @@
+[
+  {
+    "label": "Rainbow",
+    "prompt_text": "bright rainbow palette",
+    "tags": [
+      "colorful"
+    ]
+  },
+  {
+    "label": "Pastel Rainbow",
+    "prompt_text": "soft pastel rainbow palette",
+    "tags": [
+      "pastel",
+      "colorful"
+    ]
+  },
+  {
+    "label": "Neon Rainbow",
+    "prompt_text": "neon rainbow palette with glow",
+    "tags": [
+      "neon",
+      "colorful"
+    ]
+  },
+  {
+    "label": "Cotton Candy",
+    "prompt_text": "pink purple blue cotton-candy palette",
+    "tags": [
+      "pastel"
+    ]
+  },
+  {
+    "label": "Sunset Glow",
+    "prompt_text": "sunset palette (pink orange gold) with soft glow",
+    "tags": [
+      "sunset",
+      "glow"
+    ]
+  },
+  {
+    "label": "Ocean Sparkle",
+    "prompt_text": "ocean palette (teal blue) with sparkles",
+    "tags": [
+      "ocean",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Galaxy Lights",
+    "prompt_text": "purple indigo galaxy palette with neon stars",
+    "tags": [
+      "space"
+    ]
+  },
+  {
+    "label": "Midnight Glitter",
+    "prompt_text": "dark night palette with tiny sparkles (not scary)",
+    "tags": [
+      "night",
+      "spooky-cute"
+    ]
+  },
+  {
+    "label": "Rose Gold Shimmer",
+    "prompt_text": "rose gold shimmer palette",
+    "tags": [
+      "shimmer"
+    ]
+  },
+  {
+    "label": "Icy Winter",
+    "prompt_text": "icy winter palette (light blue white silver) with glitter",
+    "tags": [
+      "winter",
+      "sparkle"
+    ]
+  }
+]

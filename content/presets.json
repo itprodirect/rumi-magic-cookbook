@@ -1,0 +1,693 @@
+[
+  {
+    "name": "Neon Pancake Party",
+    "description": "Rainbow neon pancakes + sparkles + hearts",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Sparkles",
+        "Heart Confetti"
+      ],
+      "addons": [
+        "Pancakes",
+        "Cute Face"
+      ],
+      "theme": "Pancake Party",
+      "mood": "Super Happy"
+    }
+  },
+  {
+    "name": "Magic Cookbook Cover",
+    "description": "Storybook cookbook + potions + magic swirls",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Storybook",
+      "effects": [
+        "Magic Swirls",
+        "Star Confetti"
+      ],
+      "addons": [
+        "Potions",
+        "Bow on Top"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Dreamy"
+    }
+  },
+  {
+    "name": "Cloud Kingdom Stickers",
+    "description": "Puffy cloud world + sticker vibe + sparkles",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Sparkles",
+        "Star Confetti"
+      ],
+      "addons": [
+        "Cute Face",
+        "Bow on Top"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Cozy"
+    }
+  },
+  {
+    "name": "Outer Space Candy Galaxy",
+    "description": "Neon galaxy lights + glitter dust + stars",
+    "token_ids": {
+      "palette": "Galaxy Lights",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Sparkles",
+        "Star Confetti"
+      ],
+      "addons": [
+        "Cute Face"
+      ],
+      "theme": "Outer Space",
+      "mood": "Dreamy"
+    }
+  },
+  {
+    "name": "Midnight Glitter Dream",
+    "description": "Dark sparkle night (spooky-cute only)",
+    "token_ids": {
+      "palette": "Midnight Glitter",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Sparkles",
+        "Star Confetti"
+      ],
+      "addons": [
+        "Cute Face",
+        "Bow on Top"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Spooky-Cute"
+    }
+  },
+  {
+    "name": "Potion Parade",
+    "description": "Potions everywhere, soft glow, friendly bubbles",
+    "token_ids": {
+      "palette": "Galaxy Lights",
+      "style": "3D Toy",
+      "effects": [
+        "Magic Swirls",
+        "Sparkles"
+      ],
+      "addons": [
+        "Potions"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Happy"
+    }
+  },
+  {
+    "name": "Rainbow Sticker Explosion",
+    "description": "Sticker sheet vibe with lots of confetti",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Star Confetti",
+        "Heart Confetti"
+      ],
+      "addons": [
+        "Cute Face"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Super Happy"
+    }
+  },
+  {
+    "name": "Puffy Bouncy Marshmallow World",
+    "description": "Soft bouncy shapes + glitter pen accents",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Storybook",
+      "effects": [
+        "Sparkles",
+        "Magic Swirls"
+      ],
+      "addons": [
+        "Bow on Top"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Cozy"
+    }
+  },
+  {
+    "name": "Galaxy Pancake Astronaut",
+    "description": "Space + pancakes + neon outline",
+    "token_ids": {
+      "palette": "Galaxy Lights",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Star Confetti",
+        "Sparkles"
+      ],
+      "addons": [
+        "Pancakes"
+      ],
+      "theme": "Outer Space",
+      "mood": "Happy"
+    }
+  },
+  {
+    "name": "Cute Face Everything",
+    "description": "Everything gets a cute face + sparkles",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "3D Toy",
+      "effects": [
+        "Sparkles",
+        "Heart Confetti"
+      ],
+      "addons": [
+        "Cute Face"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Super Happy"
+    }
+  },
+  {
+    "name": "Sticker Potion Labels",
+    "description": "Potion bottles as stickers with clean outlines",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Sparkles"
+      ],
+      "addons": [
+        "Potions",
+        "Bow on Top"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Dreamy"
+    }
+  },
+  {
+    "name": "Neon Outline Cookbook",
+    "description": "Cookbook with neon edges + star confetti",
+    "token_ids": {
+      "palette": "Galaxy Lights",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Star Confetti",
+        "Magic Swirls"
+      ],
+      "addons": [
+        "Potions"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Dreamy"
+    }
+  },
+  {
+    "name": "Hearts & Stars Party",
+    "description": "Maximum hearts + stars + rainbow",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Heart Confetti",
+        "Star Confetti"
+      ],
+      "addons": [
+        "Bow on Top"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Super Happy"
+    }
+  },
+  {
+    "name": "Cozy Bedtime Cookbook",
+    "description": "Soft storybook + cozy + sparkles",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Storybook",
+      "effects": [
+        "Sparkles"
+      ],
+      "addons": [
+        "Potions"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Cozy"
+    }
+  },
+  {
+    "name": "Toy Pancake Café",
+    "description": "3D toy look pancakes + syrup swirls (cartoon)",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "3D Toy",
+      "effects": [
+        "Sparkles"
+      ],
+      "addons": [
+        "Pancakes"
+      ],
+      "theme": "Pancake Party",
+      "mood": "Happy"
+    }
+  },
+  {
+    "name": "Spooky-Cute Starry Night",
+    "description": "Night glow, friendly and cozy, NOT scary",
+    "token_ids": {
+      "palette": "Midnight Glitter",
+      "style": "Storybook",
+      "effects": [
+        "Star Confetti",
+        "Sparkles"
+      ],
+      "addons": [
+        "Cute Face"
+      ],
+      "theme": "Outer Space",
+      "mood": "Spooky-Cute"
+    }
+  },
+  {
+    "name": "Cloud Sticker Sheet",
+    "description": "Clouds as stickers with faces + bows",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Sparkles"
+      ],
+      "addons": [
+        "Cute Face",
+        "Bow on Top"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Cozy"
+    }
+  },
+  {
+    "name": "Ultra Glitter Potion Lab",
+    "description": "Potion lab but cute + glitter dust",
+    "token_ids": {
+      "palette": "Galaxy Lights",
+      "style": "3D Toy",
+      "effects": [
+        "Sparkles",
+        "Magic Swirls"
+      ],
+      "addons": [
+        "Potions"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Happy"
+    }
+  },
+  {
+    "name": "Rainbow Space Postcard",
+    "description": "Postcard-like composition, clean, cute",
+    "token_ids": {
+      "palette": "Galaxy Lights",
+      "style": "Magical Postcard",
+      "effects": [
+        "Twinkling Stars"
+      ],
+      "addons": [
+        "Bow on Top"
+      ],
+      "theme": "Outer Space",
+      "mood": "Dreamy"
+    }
+  },
+  {
+    "name": "Candy Clouds & Confetti",
+    "description": "Cotton candy clouds + heart confetti",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Heart Confetti",
+        "Sparkles"
+      ],
+      "addons": [
+        "Cute Face"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Super Happy"
+    }
+  },
+  {
+    "name": "Glitter Gel-Pen Doodles",
+    "description": "Looks like gel pen + sparkles",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "Glitter Gel-Pen",
+      "effects": [
+        "Sparkles",
+        "Star Confetti"
+      ],
+      "addons": [
+        "Bow on Top"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Dreamy"
+    }
+  },
+  {
+    "name": "Pay-Back Pancakes Deluxe",
+    "description": "Pancakes + magic swirls + stars",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Magic Swirls",
+        "Star Confetti"
+      ],
+      "addons": [
+        "Pancakes",
+        "Potions"
+      ],
+      "theme": "Pancake Party",
+      "mood": "Super Happy"
+    }
+  },
+  {
+    "name": "Tiny Stars Everywhere",
+    "description": "Small stars, soft glow, cozy",
+    "token_ids": {
+      "palette": "Galaxy Lights",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Star Confetti"
+      ],
+      "addons": [
+        "Cute Face"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Cozy"
+    }
+  },
+  {
+    "name": "Rainbow Magic Stamp",
+    "description": "Recipe card with stamp vibe",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "Storybook",
+      "effects": [
+        "Sparkles"
+      ],
+      "addons": [
+        "Magic Stamp"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Happy"
+    }
+  },
+  {
+    "name": "Neon Space Sticker Pack",
+    "description": "Space elements like stickers + neon",
+    "token_ids": {
+      "palette": "Galaxy Lights",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Star Confetti",
+        "Sparkles"
+      ],
+      "addons": [
+        "Planets"
+      ],
+      "theme": "Outer Space",
+      "mood": "Happy"
+    }
+  },
+  {
+    "name": "Glowy Hearts Cookbook",
+    "description": "Cookbook + hearts + gentle glow",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Heart Confetti",
+        "Magic Swirls"
+      ],
+      "addons": [
+        "Potions"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Dreamy"
+    }
+  },
+  {
+    "name": "Cloudy Pancake Dreams",
+    "description": "Pancakes in cloud kingdom (cute)",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Storybook",
+      "effects": [
+        "Sparkles",
+        "Heart Confetti"
+      ],
+      "addons": [
+        "Pancakes"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Dreamy"
+    }
+  },
+  {
+    "name": "Midnight Glitter Stickers",
+    "description": "Night glitter + sticker vibe (safe)",
+    "token_ids": {
+      "palette": "Midnight Glitter",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Sparkles",
+        "Star Confetti"
+      ],
+      "addons": [
+        "Bow on Top"
+      ],
+      "theme": "Outer Space",
+      "mood": "Spooky-Cute"
+    }
+  },
+  {
+    "name": "Ultra Cute Toy Cookbook",
+    "description": "3D toy cookbook cover + potions",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "3D Toy",
+      "effects": [
+        "Sparkles"
+      ],
+      "addons": [
+        "Potions",
+        "Cute Face"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Super Happy"
+    }
+  },
+  {
+    "name": "Sticker Universe Party",
+    "description": "Sticker universe + confetti border",
+    "token_ids": {
+      "palette": "Pastel Rainbow",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Confetti Border",
+        "Sticker Shadow"
+      ],
+      "addons": [
+        "Rainbows"
+      ],
+      "theme": "Sticker Universe",
+      "mood": "Silly"
+    }
+  },
+  {
+    "name": "Emerald & Pink Spellfriends (Axolotl)",
+    "description": "Stage-magic vibes + axolotl mascot",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Storybook",
+      "effects": [
+        "Sparkles",
+        "Magic Swirls"
+      ],
+      "addons": [
+        "Bow on Top",
+        "Cute Face"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Dreamy",
+      "creature": "Axolotl (Pastel Rainbow)"
+    }
+  },
+  {
+    "name": "K-Pop Stage Sparkles (Axolotl)",
+    "description": "Neon stage lights + confetti + cute idol energy",
+    "token_ids": {
+      "palette": "Neon Rainbow",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Star Confetti",
+        "Heart Confetti"
+      ],
+      "addons": [
+        "Bow on Top"
+      ],
+      "theme": "Neon Playground",
+      "mood": "Super Happy",
+      "creature": "Axolotl (Pink)"
+    }
+  },
+  {
+    "name": "Axolotl Potion Parade",
+    "description": "Potions + bubbles + toy look",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "3D Toy",
+      "effects": [
+        "Sparkles",
+        "Magic Swirls"
+      ],
+      "addons": [
+        "Potions"
+      ],
+      "theme": "Magic Cookbook",
+      "mood": "Happy",
+      "creature": "Axolotl (Pink)"
+    }
+  },
+  {
+    "name": "Bubble Pond Sticker Sheet",
+    "description": "Sticker pack layout with axolotl + pond icons",
+    "token_ids": {
+      "palette": "Pastel Rainbow",
+      "style": "Kawaii Sticker",
+      "effects": [
+        "Sticker Shadow",
+        "Sparkles"
+      ],
+      "addons": [
+        "Cute Face"
+      ],
+      "theme": "Underwater Sparkle",
+      "mood": "Cozy",
+      "creature": "Axolotl (Pastel Rainbow)"
+    }
+  },
+  {
+    "name": "Galaxy Axolotl Space Postcard",
+    "description": "Clean storybook space composition",
+    "token_ids": {
+      "palette": "Galaxy Lights",
+      "style": "Magical Postcard",
+      "effects": [
+        "Twinkling Stars",
+        "Sparkle Trail"
+      ],
+      "addons": [
+        "Planets"
+      ],
+      "theme": "Outer Space",
+      "mood": "Dreamy",
+      "creature": "Axolotl (Galaxy)"
+    }
+  },
+  {
+    "name": "Axolotl Pancake Party",
+    "description": "Axolotl + pancakes + neon glow",
+    "token_ids": {
+      "palette": "Rainbow",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Sparkles",
+        "Heart Confetti"
+      ],
+      "addons": [
+        "Pancakes"
+      ],
+      "theme": "Pancake Party",
+      "mood": "Super Happy",
+      "creature": "Axolotl (Pink)"
+    }
+  },
+  {
+    "name": "Spooky-Cute Moon Pond",
+    "description": "Cozy night glow, friendly, not scary",
+    "token_ids": {
+      "palette": "Midnight Glitter",
+      "style": "Storybook",
+      "effects": [
+        "Twinkling Stars",
+        "Glow Aura"
+      ],
+      "addons": [
+        "Cute Face"
+      ],
+      "theme": "Dreamy Bedtime Sky",
+      "mood": "Spooky-Cute",
+      "creature": "Axolotl (Spooky-Cute Night)"
+    }
+  },
+  {
+    "name": "Neon Wave Recipe Card (Axolotl)",
+    "description": "Aqua neon waves + glitter frame",
+    "token_ids": {
+      "palette": "Ocean Sparkle",
+      "style": "Neon Cartoon",
+      "effects": [
+        "Neon Outline",
+        "Glitter Frame"
+      ],
+      "addons": [
+        "Magic Stamp"
+      ],
+      "theme": "Underwater Sparkle",
+      "mood": "Happy",
+      "creature": "Axolotl (Pastel Rainbow)"
+    }
+  },
+  {
+    "name": "Axolotl Cloud Kingdom",
+    "description": "Axolotl floating in puffy clouds",
+    "token_ids": {
+      "palette": "Cotton Candy",
+      "style": "Candy-Coated",
+      "effects": [
+        "Soft Clouds",
+        "Sparkles"
+      ],
+      "addons": [
+        "Bow on Top"
+      ],
+      "theme": "Cloud Kingdom",
+      "mood": "Dreamy",
+      "creature": "Axolotl (Pastel Rainbow)"
+    }
+  },
+  {
+    "name": "Axolotl Fan Lightstick Party",
+    "description": "Concert lightstick vibe (generic)",
+    "token_ids": {
+      "palette": "Neon Rainbow",
+      "style": "Kids Game UI",
+      "effects": [
+        "Star Confetti",
+        "Bokeh Lights"
+      ],
+      "addons": [
+        "Tiny Stars"
+      ],
+      "theme": "Neon Playground",
+      "mood": "Silly",
+      "creature": "Axolotl (Pink)"
+    }
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "label": "Bow on Top",
+    "prompt_text": "add a cute bow on top",
+    "tags": [
+      "bow"
+    ]
+  },
+  {
+    "label": "Cute Face",
+    "prompt_text": "add a cute friendly face with big eyes and smile",
+    "tags": [
+      "face",
+      "cute"
+    ]
+  },
+  {
+    "label": "Tiny Hearts",
+    "prompt_text": "add tiny hearts",
+    "tags": [
+      "hearts"
+    ]
+  },
+  {
+    "label": "Tiny Stars",
+    "prompt_text": "add tiny stars",
+    "tags": [
+      "stars"
+    ]
+  },
+  {
+    "label": "Rainbows",
+    "prompt_text": "add small rainbows",
+    "tags": [
+      "rainbow"
+    ]
+  },
+  {
+    "label": "Pancakes",
+    "prompt_text": "include cute pancakes with syrup (cartoon)",
+    "tags": [
+      "food",
+      "pancakes"
+    ]
+  },
+  {
+    "label": "Potions",
+    "prompt_text": "include colorful magic potion bottles (cartoon)",
+    "tags": [
+      "magic",
+      "potion"
+    ]
+  },
+  {
+    "label": "Magic Symbols",
+    "prompt_text": "include simple magic symbols (stars moons sparkles swirls)",
+    "tags": [
+      "magic",
+      "symbols"
+    ]
+  },
+  {
+    "label": "Ice Skates",
+    "prompt_text": "include cute ice skates (cartoon)",
+    "tags": [
+      "sports",
+      "cute"
+    ]
+  },
+  {
+    "label": "Roller Skates",
+    "prompt_text": "include cute roller skates (cartoon)",
+    "tags": [
+      "sports",
+      "cute"
+    ]
+  },
+  {
+    "label": "Cupcakes",
+    "prompt_text": "include cute cupcakes (cartoon)",
+    "tags": [
+      "food",
+      "cute"
+    ]
+  },
+  {
+    "label": "Balloons",
+    "prompt_text": "include cute balloons",
+    "tags": [
+      "party",
+      "cute"
+    ]
+  },
+  {
+    "label": "Snowflakes",
+    "prompt_text": "include sparkly snowflakes",
+    "tags": [
+      "winter",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Planets",
+    "prompt_text": "include cute planets with rings",
+    "tags": [
+      "space",
+      "cute"
+    ]
+  },
+  {
+    "label": "Magic Stamp",
+    "prompt_text": "include a cute magic stamp/seal",
+    "tags": [
+      "stamp",
+      "magic"
+    ]
+  }
+]

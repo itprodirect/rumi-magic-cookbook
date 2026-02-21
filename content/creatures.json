@@ -1,0 +1,61 @@
+[
+  {
+    "label": "Axolotl (Pink)",
+    "prompt_text": "a cute pink axolotl mascot with big friendly eyes (cartoon)",
+    "tags": [
+      "axolotl",
+      "cute"
+    ]
+  },
+  {
+    "label": "Axolotl (Pastel Rainbow)",
+    "prompt_text": "a pastel rainbow axolotl mascot, sticker style, very cute",
+    "tags": [
+      "axolotl",
+      "rainbow",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Axolotl (Galaxy)",
+    "prompt_text": "a galaxy-themed axolotl mascot with tiny star freckles (cartoon)",
+    "tags": [
+      "axolotl",
+      "space",
+      "stars"
+    ]
+  },
+  {
+    "label": "Axolotl (Spooky-Cute Night)",
+    "prompt_text": "a spooky-cute axolotl mascot under cozy moonlight (NOT scary)",
+    "tags": [
+      "axolotl",
+      "spooky-cute",
+      "night"
+    ]
+  },
+  {
+    "label": "Unicorn",
+    "prompt_text": "a cute unicorn mascot (cartoon)",
+    "tags": [
+      "fantasy",
+      "cute"
+    ]
+  },
+  {
+    "label": "Puppy",
+    "prompt_text": "a cute puppy mascot (cartoon)",
+    "tags": [
+      "animal",
+      "cute"
+    ]
+  },
+  {
+    "label": "Kitten",
+    "prompt_text": "a cute kitten mascot (cartoon)",
+    "tags": [
+      "animal",
+      "cute"
+    ]
+  }
+]

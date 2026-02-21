@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum DictionaryCategory {
+  palette
+  style
+  effect
+  addon
+  theme
+  mood
+  step
+  title
+  creature
+  ingredient
+}
+
+enum RequestStatus {
+  pending
+  approved
+  rejected
+}
+
+enum SuggestionStatus {
+  pending
+  approved
+  rejected
+}
+
+model DictionaryItem {
+  id         String             @id @default(uuid())
+  category   DictionaryCategory
+  label      String
+  promptText String             @map("prompt_text")
+  tags       String[]
+  isActive   Boolean            @default(true) @map("is_active")
+  createdAt  DateTime           @default(now()) @map("created_at")
+
+  @@unique([category, label])
+  @@map("dictionary_items")
+}
+
+model Preset {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  tokenIds    Json     @map("token_ids")
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("presets")
+}
+
+model GenerationRequest {
+  id               String        @id @default(uuid())
+  deviceId         String        @map("device_id")
+  tokenIds         Json          @map("token_ids")
+  composedPrompt   String        @map("composed_prompt")
+  status           RequestStatus @default(pending)
+  imageData        String?       @map("image_data")
+  moderationInput  Json?         @map("moderation_input")
+  moderationOutput Json?         @map("moderation_output")
+  createdAt        DateTime      @default(now()) @map("created_at")
+  reviewedAt       DateTime?     @map("reviewed_at")
+
+  @@map("generation_requests")
+}
+
+model Suggestion {
+  id         String           @id @default(uuid())
+  deviceId   String           @map("device_id")
+  phrase     String
+  category   String?
+  status     SuggestionStatus @default(pending)
+  createdAt  DateTime         @default(now()) @map("created_at")
+  reviewedAt DateTime?        @map("reviewed_at")
+
+  @@map("suggestions")
+}

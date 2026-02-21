@@ -39,3 +39,36 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ──────────────────────────────────────────────
+# Rumi Magic Cookbook — Additional .gitignore rules
+# Append these to the existing .gitignore
+# ──────────────────────────────────────────────
+
+# Environment (catch all patterns, not just .local)
+.env
+.env.*
+!.env.example
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+
+# Certificates / keys
+*.pem
+*.key
+
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Vercel
+.vercel
+

@@ -1,0 +1,839 @@
+[
+  {
+    "label": "Pancake Stack",
+    "prompt_text": "a cute cartoon pancake stack with syrup (kid-friendly)",
+    "tags": [
+      "pancakes",
+      "food"
+    ]
+  },
+  {
+    "label": "Tiny Pancakes",
+    "prompt_text": "tiny mini pancakes like stickers",
+    "tags": [
+      "pancakes",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Syrup Bottle",
+    "prompt_text": "a cute syrup bottle with a smiling label",
+    "tags": [
+      "sweet",
+      "cute"
+    ]
+  },
+  {
+    "label": "Butter Heart",
+    "prompt_text": "a heart-shaped butter pat",
+    "tags": [
+      "hearts",
+      "food"
+    ]
+  },
+  {
+    "label": "Sprinkles",
+    "prompt_text": "colorful sprinkles floating like confetti",
+    "tags": [
+      "sprinkles",
+      "color"
+    ]
+  },
+  {
+    "label": "Rainbow Sugar",
+    "prompt_text": "rainbow sugar crystals that sparkle",
+    "tags": [
+      "rainbow",
+      "sparkles"
+    ]
+  },
+  {
+    "label": "Cotton Candy Puff",
+    "prompt_text": "a cotton candy puff (pink/purple/blue)",
+    "tags": [
+      "cotton-candy",
+      "puffy"
+    ]
+  },
+  {
+    "label": "Cupcake",
+    "prompt_text": "a cute cupcake with glitter icing",
+    "tags": [
+      "dessert",
+      "cute"
+    ]
+  },
+  {
+    "label": "Star Cookie",
+    "prompt_text": "a star-shaped cookie with icing",
+    "tags": [
+      "stars",
+      "food"
+    ]
+  },
+  {
+    "label": "Berry Bowl",
+    "prompt_text": "a bowl of cute berries with tiny sparkles",
+    "tags": [
+      "fruit",
+      "cute"
+    ]
+  },
+  {
+    "label": "Magic Potion (Pink)",
+    "prompt_text": "a pink magic potion bottle with friendly bubbles",
+    "tags": [
+      "potion",
+      "magic"
+    ]
+  },
+  {
+    "label": "Magic Potion (Blue)",
+    "prompt_text": "a blue magic potion bottle glowing softly",
+    "tags": [
+      "potion",
+      "magic"
+    ]
+  },
+  {
+    "label": "Magic Potion (Rainbow)",
+    "prompt_text": "a rainbow potion bottle with glitter swirls",
+    "tags": [
+      "potion",
+      "rainbow"
+    ]
+  },
+  {
+    "label": "Fairy Dust Jar",
+    "prompt_text": "a jar of fairy dust (sparkly)",
+    "tags": [
+      "magic",
+      "sparkles"
+    ]
+  },
+  {
+    "label": "Magic Wand",
+    "prompt_text": "a cute star-tipped magic wand (toy-like)",
+    "tags": [
+      "magic",
+      "stars"
+    ]
+  },
+  {
+    "label": "Moon Charm",
+    "prompt_text": "a crescent moon charm glowing softly",
+    "tags": [
+      "moon",
+      "night"
+    ]
+  },
+  {
+    "label": "Star Charm",
+    "prompt_text": "a tiny star charm with neon glow",
+    "tags": [
+      "stars",
+      "neon"
+    ]
+  },
+  {
+    "label": "Crystal",
+    "prompt_text": "a friendly pastel crystal (no sharp danger vibe)",
+    "tags": [
+      "magic",
+      "pastel"
+    ]
+  },
+  {
+    "label": "Sparkle Gem",
+    "prompt_text": "a sparkle gem sticker",
+    "tags": [
+      "sparkles",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Magic Stamp",
+    "prompt_text": "a cute stamp that leaves a sparkly mark",
+    "tags": [
+      "stamp",
+      "magic"
+    ]
+  },
+  {
+    "label": "Puffy Cloud",
+    "prompt_text": "a puffy cloud with a cute face",
+    "tags": [
+      "clouds",
+      "cute"
+    ]
+  },
+  {
+    "label": "Rainbow Cloud",
+    "prompt_text": "a rainbow cloud with soft glow",
+    "tags": [
+      "clouds",
+      "rainbow"
+    ]
+  },
+  {
+    "label": "Planet",
+    "prompt_text": "a cute pastel planet with rings",
+    "tags": [
+      "space",
+      "cute"
+    ]
+  },
+  {
+    "label": "Tiny Rocket",
+    "prompt_text": "a tiny friendly rocket ship sticker",
+    "tags": [
+      "space",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Shooting Star",
+    "prompt_text": "a shooting star with a glitter trail",
+    "tags": [
+      "stars",
+      "sparkles"
+    ]
+  },
+  {
+    "label": "Galaxy Swirl",
+    "prompt_text": "a galaxy swirl doodle (neon outer space)",
+    "tags": [
+      "space",
+      "neon"
+    ]
+  },
+  {
+    "label": "Bow",
+    "prompt_text": "a cute bow (rainbow optional)",
+    "tags": [
+      "bow",
+      "cute"
+    ]
+  },
+  {
+    "label": "Heart Sticker",
+    "prompt_text": "a heart sticker with glow",
+    "tags": [
+      "hearts",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Snowflake",
+    "prompt_text": "a snowflake with sparkle (winter magic)",
+    "tags": [
+      "winter",
+      "sparkles"
+    ]
+  },
+  {
+    "label": "Friendly Ghost",
+    "prompt_text": "a tiny friendly ghost sticker (smiling, not scary)",
+    "tags": [
+      "spooky-cute",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Axolotl Sticker",
+    "prompt_text": "a cute axolotl sticker with sparkles",
+    "tags": [
+      "axolotl",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Axolotl Plush",
+    "prompt_text": "a soft axolotl plush toy (cute)",
+    "tags": [
+      "axolotl",
+      "toy"
+    ]
+  },
+  {
+    "label": "Gilly Crown",
+    "prompt_text": "a tiny crown shaped like axolotl gills (cute)",
+    "tags": [
+      "axolotl",
+      "crown"
+    ]
+  },
+  {
+    "label": "Bubble Pearl",
+    "prompt_text": "a bubble pearl with rainbow shine",
+    "tags": [
+      "bubble",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Water Sparkles",
+    "prompt_text": "water sparkles like glitter",
+    "tags": [
+      "water",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Lily Pad",
+    "prompt_text": "a cute lily pad sticker",
+    "tags": [
+      "water",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Sea Star",
+    "prompt_text": "a cute sea star with a smile",
+    "tags": [
+      "sea",
+      "cute"
+    ]
+  },
+  {
+    "label": "Shell Badge",
+    "prompt_text": "a shell badge icon (cute)",
+    "tags": [
+      "sea",
+      "badge"
+    ]
+  },
+  {
+    "label": "Coral Confetti",
+    "prompt_text": "tiny coral-shaped confetti (cute)",
+    "tags": [
+      "confetti"
+    ]
+  },
+  {
+    "label": "Heart Bubble",
+    "prompt_text": "a heart-shaped bubble",
+    "tags": [
+      "hearts",
+      "bubble"
+    ]
+  },
+  {
+    "label": "Axolotl Potion",
+    "prompt_text": "a potion bottle with an axolotl label (cute)",
+    "tags": [
+      "axolotl",
+      "potion"
+    ]
+  },
+  {
+    "label": "Glow Kelp",
+    "prompt_text": "soft glowing kelp (not scary)",
+    "tags": [
+      "glow",
+      "sea"
+    ]
+  },
+  {
+    "label": "Moon Jelly",
+    "prompt_text": "a cute moon-jellyfish (friendly, not scary)",
+    "tags": [
+      "sea",
+      "moon"
+    ]
+  },
+  {
+    "label": "Rainbow Scale Sprinkle",
+    "prompt_text": "tiny rainbow scale sprinkles (cute)",
+    "tags": [
+      "rainbow",
+      "sprinkle"
+    ]
+  },
+  {
+    "label": "Starfish Cookie",
+    "prompt_text": "a starfish-shaped cookie sticker",
+    "tags": [
+      "food",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Bubble Wand",
+    "prompt_text": "a bubble wand with sparkles",
+    "tags": [
+      "wand",
+      "bubble"
+    ]
+  },
+  {
+    "label": "Neon Wave",
+    "prompt_text": "a neon wave doodle",
+    "tags": [
+      "neon",
+      "water"
+    ]
+  },
+  {
+    "label": "Aqua Glitter Frame",
+    "prompt_text": "an aqua glitter frame border",
+    "tags": [
+      "border",
+      "glitter"
+    ]
+  },
+  {
+    "label": "Tiny Pond Lantern",
+    "prompt_text": "a tiny lantern glowing softly by water",
+    "tags": [
+      "cozy",
+      "glow"
+    ]
+  },
+  {
+    "label": "Axolotl Bow",
+    "prompt_text": "a cute bow that matches axolotl colors",
+    "tags": [
+      "bow",
+      "axolotl"
+    ]
+  },
+  {
+    "label": "Axolotl Crown",
+    "prompt_text": "a tiny cute crown sitting on an axolotl head (cartoon)",
+    "tags": [
+      "axolotl",
+      "cute",
+      "accessory"
+    ]
+  },
+  {
+    "label": "Axolotl Headphones",
+    "prompt_text": "cute axolotl wearing big colorful headphones (cartoon)",
+    "tags": [
+      "axolotl",
+      "music",
+      "cute"
+    ]
+  },
+  {
+    "label": "Axolotl Microphone",
+    "prompt_text": "a cute microphone with an axolotl face sticker on it",
+    "tags": [
+      "music",
+      "stage",
+      "axolotl"
+    ]
+  },
+  {
+    "label": "Axolotl Lightstick",
+    "prompt_text": "a concert lightstick shaped like a cute axolotl (glowing, kid-safe)",
+    "tags": [
+      "kpop",
+      "fan",
+      "stage",
+      "axolotl"
+    ]
+  },
+  {
+    "label": "Axolotl Concert Wristband",
+    "prompt_text": "a colorful concert wristband with tiny axolotl icons",
+    "tags": [
+      "kpop",
+      "fan",
+      "cute"
+    ]
+  },
+  {
+    "label": "Neon Stage Lights",
+    "prompt_text": "neon stage lights (hearts and stars), friendly vibe",
+    "tags": [
+      "stage",
+      "neon",
+      "hearts",
+      "stars"
+    ]
+  },
+  {
+    "label": "Music Notes Confetti",
+    "prompt_text": "tiny music notes confetti floating gently",
+    "tags": [
+      "music",
+      "confetti"
+    ]
+  },
+  {
+    "label": "Sparkle Spotlight",
+    "prompt_text": "a soft spotlight beam with sparkles (not intense)",
+    "tags": [
+      "stage",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Cute Speaker Stack",
+    "prompt_text": "a cute speaker stack with smiling faces (cartoon)",
+    "tags": [
+      "music",
+      "cute"
+    ]
+  },
+  {
+    "label": "Glow Concert Banner",
+    "prompt_text": "a small glow banner that says 'YAY!' (kid-safe)",
+    "tags": [
+      "fan",
+      "glow",
+      "cute"
+    ]
+  },
+  {
+    "label": "Bubble Heart Cluster",
+    "prompt_text": "a cluster of heart-shaped bubbles",
+    "tags": [
+      "bubble",
+      "hearts",
+      "cute"
+    ]
+  },
+  {
+    "label": "Rainbow Bubble",
+    "prompt_text": "a rainbow bubble with a shiny highlight",
+    "tags": [
+      "bubble",
+      "rainbow"
+    ]
+  },
+  {
+    "label": "Glitter Water Drop",
+    "prompt_text": "a water droplet filled with glitter (cartoon)",
+    "tags": [
+      "water",
+      "glitter"
+    ]
+  },
+  {
+    "label": "Aqua Sparkle Splash",
+    "prompt_text": "a cute aqua splash with sparkles (cartoon)",
+    "tags": [
+      "water",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Pond Ripple Rings",
+    "prompt_text": "gentle pond ripple rings (cute, stylized)",
+    "tags": [
+      "water",
+      "pond"
+    ]
+  },
+  {
+    "label": "Lily Pad Trio",
+    "prompt_text": "three cute lily pads like stickers",
+    "tags": [
+      "pond",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Lotus Bloom",
+    "prompt_text": "a cute lotus flower with soft glow",
+    "tags": [
+      "pond",
+      "flower",
+      "glow"
+    ]
+  },
+  {
+    "label": "Pond Lantern",
+    "prompt_text": "a tiny pond lantern with cozy glow (not scary)",
+    "tags": [
+      "pond",
+      "cozy",
+      "glow"
+    ]
+  },
+  {
+    "label": "Tiny Frog Friend",
+    "prompt_text": "a tiny friendly frog sticker (cute)",
+    "tags": [
+      "pond",
+      "cute",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Duckling Float",
+    "prompt_text": "a tiny duckling floaty (cartoon, cute)",
+    "tags": [
+      "pond",
+      "cute"
+    ]
+  },
+  {
+    "label": "Seashell Sparkle",
+    "prompt_text": "a cute seashell with glitter sparkle",
+    "tags": [
+      "sea",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Starfish Smile",
+    "prompt_text": "a smiling starfish sticker",
+    "tags": [
+      "sea",
+      "cute",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Pearl Shine",
+    "prompt_text": "a shiny pearl with rainbow sheen",
+    "tags": [
+      "sea",
+      "shiny"
+    ]
+  },
+  {
+    "label": "Coral Candy",
+    "prompt_text": "cute coral shaped like candy (pastel)",
+    "tags": [
+      "sea",
+      "pastel",
+      "cute"
+    ]
+  },
+  {
+    "label": "Friendly Seahorse",
+    "prompt_text": "a tiny friendly seahorse (cartoon)",
+    "tags": [
+      "sea",
+      "cute"
+    ]
+  },
+  {
+    "label": "Axolotl Backpack",
+    "prompt_text": "a cute axolotl-shaped backpack (cartoon)",
+    "tags": [
+      "axolotl",
+      "cute",
+      "accessory"
+    ]
+  },
+  {
+    "label": "Axolotl Bow Tie",
+    "prompt_text": "a cute bow tie with axolotl colors",
+    "tags": [
+      "axolotl",
+      "bow",
+      "cute"
+    ]
+  },
+  {
+    "label": "Axolotl Hair Clip",
+    "prompt_text": "a cute axolotl hair clip sticker",
+    "tags": [
+      "axolotl",
+      "sticker",
+      "accessory"
+    ]
+  },
+  {
+    "label": "Axolotl Necklace Charm",
+    "prompt_text": "a small axolotl charm necklace (cartoon)",
+    "tags": [
+      "axolotl",
+      "cute",
+      "charm"
+    ]
+  },
+  {
+    "label": "Axolotl Sticker Badge",
+    "prompt_text": "a badge sticker with an axolotl face and stars",
+    "tags": [
+      "axolotl",
+      "badge",
+      "stars"
+    ]
+  },
+  {
+    "label": "Mini Album Sticker",
+    "prompt_text": "a cute mini album sticker with hearts (generic, no real logos)",
+    "tags": [
+      "fan",
+      "music",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Glow Ticket Stub",
+    "prompt_text": "a glowing concert ticket stub sticker (generic)",
+    "tags": [
+      "fan",
+      "stage",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Confetti Popper",
+    "prompt_text": "a confetti popper bursting hearts and stars (cute)",
+    "tags": [
+      "confetti",
+      "hearts",
+      "stars"
+    ]
+  },
+  {
+    "label": "Stage Star Crown",
+    "prompt_text": "a star crown headband (cute)",
+    "tags": [
+      "stage",
+      "stars",
+      "cute"
+    ]
+  },
+  {
+    "label": "Neon Heart Glasses",
+    "prompt_text": "neon heart-shaped glasses (cartoon)",
+    "tags": [
+      "neon",
+      "hearts",
+      "cute"
+    ]
+  },
+  {
+    "label": "Magic Recipe Label",
+    "prompt_text": "a cute label that says 'Magic Recipe' (bubble letters)",
+    "tags": [
+      "cookbook",
+      "text",
+      "cute"
+    ]
+  },
+  {
+    "label": "Axolotl Stamp Seal",
+    "prompt_text": "a stamp seal with an axolotl icon (sparkly)",
+    "tags": [
+      "axolotl",
+      "stamp",
+      "magic"
+    ]
+  },
+  {
+    "label": "Potion Label: Axolotl",
+    "prompt_text": "a potion label with a tiny axolotl drawing",
+    "tags": [
+      "potion",
+      "axolotl",
+      "cookbook"
+    ]
+  },
+  {
+    "label": "Fairy Dust Spoon",
+    "prompt_text": "a spoon of fairy dust (sparkly)",
+    "tags": [
+      "magic",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Glitter Measuring Cup",
+    "prompt_text": "a measuring cup filled with glitter sprinkles",
+    "tags": [
+      "cookbook",
+      "glitter",
+      "cute"
+    ]
+  },
+  {
+    "label": "Pancake + Axolotl Face",
+    "prompt_text": "a pancake with a cute axolotl face (cartoon)",
+    "tags": [
+      "pancakes",
+      "axolotl",
+      "cute"
+    ]
+  },
+  {
+    "label": "Syrup Swirl Ribbon",
+    "prompt_text": "a syrup swirl shaped like a ribbon (cute)",
+    "tags": [
+      "sweet",
+      "bow",
+      "cute"
+    ]
+  },
+  {
+    "label": "Star Sprinkle Jar",
+    "prompt_text": "a jar of star sprinkles (cute)",
+    "tags": [
+      "stars",
+      "sprinkles",
+      "cookbook"
+    ]
+  },
+  {
+    "label": "Heart Candy",
+    "prompt_text": "a heart-shaped candy with glow",
+    "tags": [
+      "hearts",
+      "candy",
+      "glow"
+    ]
+  },
+  {
+    "label": "Rainbow Donut Ring",
+    "prompt_text": "a rainbow donut ring (cute)",
+    "tags": [
+      "food",
+      "rainbow",
+      "cute"
+    ]
+  },
+  {
+    "label": "Galaxy Gill Glow",
+    "prompt_text": "a tiny gill-shaped glow icon with stars (cute)",
+    "tags": [
+      "axolotl",
+      "space",
+      "glow"
+    ]
+  },
+  {
+    "label": "Planet Bubble",
+    "prompt_text": "a bubble that looks like a tiny planet",
+    "tags": [
+      "space",
+      "bubble",
+      "cute"
+    ]
+  },
+  {
+    "label": "Moon Bubble Badge",
+    "prompt_text": "a moon badge inside a bubble (cute)",
+    "tags": [
+      "moon",
+      "bubble",
+      "badge"
+    ]
+  },
+  {
+    "label": "Cosmic Sparkle Trail",
+    "prompt_text": "a cosmic sparkle trail swoosh",
+    "tags": [
+      "space",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Starry Sticker Border",
+    "prompt_text": "a sticker border made of tiny stars and sparkles",
+    "tags": [
+      "border",
+      "sticker",
+      "stars"
+    ]
+  }
+]

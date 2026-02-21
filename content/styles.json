@@ -1,0 +1,81 @@
+[
+  {
+    "label": "Kawaii Sticker",
+    "prompt_text": "cute kawaii sticker style, clean outlines",
+    "tags": [
+      "cute",
+      "sticker"
+    ]
+  },
+  {
+    "label": "Storybook",
+    "prompt_text": "children's storybook illustration",
+    "tags": [
+      "storybook"
+    ]
+  },
+  {
+    "label": "3D Toy",
+    "prompt_text": "shiny 3D toy look, friendly",
+    "tags": [
+      "toy",
+      "shiny"
+    ]
+  },
+  {
+    "label": "Neon Cartoon",
+    "prompt_text": "neon cartoon style, glowing edges",
+    "tags": [
+      "neon",
+      "cartoon"
+    ]
+  },
+  {
+    "label": "Watercolor Sparkle",
+    "prompt_text": "watercolor illustration with sparkles",
+    "tags": [
+      "watercolor",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Glitter Gel-Pen",
+    "prompt_text": "glitter gel-pen drawing style with doodles",
+    "tags": [
+      "glitter",
+      "doodle"
+    ]
+  },
+  {
+    "label": "Kids Game UI",
+    "prompt_text": "kids game UI art style, bright and friendly",
+    "tags": [
+      "ui",
+      "cute"
+    ]
+  },
+  {
+    "label": "Neon Sign",
+    "prompt_text": "neon sign style, soft glow, friendly",
+    "tags": [
+      "neon",
+      "sign"
+    ]
+  },
+  {
+    "label": "Magical Postcard",
+    "prompt_text": "magical postcard illustration, clean and cute",
+    "tags": [
+      "postcard",
+      "clean"
+    ]
+  },
+  {
+    "label": "Candy-Coated",
+    "prompt_text": "candy-coated shiny look, bright and cute",
+    "tags": [
+      "shiny",
+      "candy"
+    ]
+  }
+]

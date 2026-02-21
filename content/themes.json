@@ -1,0 +1,78 @@
+[
+  {
+    "label": "Pancake Party",
+    "prompt_text": "pancake party world, warm and happy",
+    "tags": [
+      "food"
+    ]
+  },
+  {
+    "label": "Magic Cookbook",
+    "prompt_text": "a magical cookbook world with sparkles",
+    "tags": [
+      "magic",
+      "book"
+    ]
+  },
+  {
+    "label": "Fairy Forest",
+    "prompt_text": "a friendly fairy forest with sparkles",
+    "tags": [
+      "forest",
+      "magic"
+    ]
+  },
+  {
+    "label": "Outer Space",
+    "prompt_text": "cute outer space with planets and rings",
+    "tags": [
+      "space"
+    ]
+  },
+  {
+    "label": "Underwater Sparkle",
+    "prompt_text": "underwater sparkle world, bright and friendly",
+    "tags": [
+      "underwater",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Rainbow Winter",
+    "prompt_text": "rainbow winter wonderland with glitter",
+    "tags": [
+      "winter",
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Cloud Kingdom",
+    "prompt_text": "soft puffy cloud kingdom",
+    "tags": [
+      "clouds"
+    ]
+  },
+  {
+    "label": "Neon Playground",
+    "prompt_text": "neon playground world, friendly and fun",
+    "tags": [
+      "neon",
+      "play"
+    ]
+  },
+  {
+    "label": "Sticker Universe",
+    "prompt_text": "sticker universe, like a sticker sheet world",
+    "tags": [
+      "sticker"
+    ]
+  },
+  {
+    "label": "Dreamy Bedtime Sky",
+    "prompt_text": "dreamy bedtime sky with stars and moonlight",
+    "tags": [
+      "night",
+      "dreamy"
+    ]
+  }
+]

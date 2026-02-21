@@ -1,0 +1,18 @@
+# Normalize line endings to LF on commit.
+# Prevents CRLF issues with Prisma migrations, SQL files, and shell scripts
+# when developing on Windows/WSL2.
+
+* text=auto eol=lf
+
+# Explicitly mark binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+
+# Lock file should not be diffed in PRs
+package-lock.json -diff

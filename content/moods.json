@@ -1,0 +1,59 @@
+[
+  {
+    "label": "Super Happy",
+    "prompt_text": "super happy and joyful",
+    "tags": [
+      "happy"
+    ]
+  },
+  {
+    "label": "Happy",
+    "prompt_text": "happy and bright",
+    "tags": [
+      "happy"
+    ]
+  },
+  {
+    "label": "Cozy",
+    "prompt_text": "cozy and warm",
+    "tags": [
+      "cozy"
+    ]
+  },
+  {
+    "label": "Dreamy",
+    "prompt_text": "dreamy and soft",
+    "tags": [
+      "dreamy"
+    ]
+  },
+  {
+    "label": "Silly",
+    "prompt_text": "silly and playful",
+    "tags": [
+      "silly"
+    ]
+  },
+  {
+    "label": "Magical",
+    "prompt_text": "magical and wonder-filled",
+    "tags": [
+      "magic"
+    ]
+  },
+  {
+    "label": "Sparkly",
+    "prompt_text": "extra sparkly and shiny (not overwhelming)",
+    "tags": [
+      "sparkle"
+    ]
+  },
+  {
+    "label": "Spooky-Cute",
+    "prompt_text": "spooky-cute night glow (not scary)",
+    "tags": [
+      "spooky-cute",
+      "night"
+    ]
+  }
+]
