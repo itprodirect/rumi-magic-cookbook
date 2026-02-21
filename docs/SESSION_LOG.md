@@ -32,6 +32,39 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 
 ## Sessions
 
+### Session 4 — 2026-02-21
+**Agent:** Claude Code (Opus 4.6)
+**Phase:** 4 (Builder wizard UX)
+**Goal:** Convert flat builder form into a 4-step wizard with dark UI
+
+**Completed:**
+- Replaced monolithic form with 4-step wizard: Preset → Core Picks → Extras → Review
+- Step 0: preset grid cards + "Surprise Me!" random preset button + "Skip" link
+- Step 1: core picks (theme, style, palette, creature, title) as styled dropdowns
+- Step 2: extras (effects, addons) as chip toggles + collapsible Advanced section (mood, steps, ingredients)
+- Step 3: review summary table + submit button, validates required fields
+- Progress bar with clickable step labels
+- Back/Next navigation with validation gating
+- Dark UI styling (zinc-800/900/950 + violet accents) matching prefers-color-scheme
+- Auto-defaults mood if not explicitly selected
+- API payload shape unchanged — same FIELD_CONFIG, same /api/generate body
+
+**Files Changed:**
+- src/app/page.tsx — full rewrite to wizard pattern with SingleSelect and ChipSelect components
+
+**Test Steps:**
+1. npm run dev → open http://localhost:3000
+2. Step 0: click a preset card → fields auto-fill, advances to Step 1
+3. Step 0: click "Surprise Me!" → random preset applied
+4. Step 0: click "Skip" → goes to Step 1 with empty fields
+5. Step 1: select theme, style, palette → Next button enables
+6. Step 2: toggle effect/addon chips, verify caps (3/3)
+7. Step 2: open Advanced, select mood/steps/ingredients
+8. Step 3: review summary shows all selections, submit works
+9. Progress bar: click step labels to jump between steps
+10. npm run lint → clean
+11. npm run build → succeeds
+
 ### Session 3 — 2026-02-21
 **Agent:** Claude Code (Opus 4.6)
 **Phase:** 4 (Gallery polish)
