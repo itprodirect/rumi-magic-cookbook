@@ -13,6 +13,18 @@ interface GalleryImage {
   createdAt: string
 }
 
+/** Extract the title label from tokenIds, if present. */
+function getTitle(img: GalleryImage): string | null {
+  const val = img.tokenIds?.title
+  if (typeof val === 'string' && val.trim()) return val.trim()
+  return null
+}
+
+/** Sanitize a string for use as a filename segment. */
+function sanitizeForFilename(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40)
+}
+
 export default function GalleryPage() {
   const [images, setImages] = useState<GalleryImage[]>([])
   const [loading, setLoading] = useState(true)
@@ -73,9 +85,11 @@ export default function GalleryPage() {
       .toISOString()
       .slice(0, 10)
       .replace(/-/g, '')
+    const title = getTitle(selected)
+    const namePart = title ? sanitizeForFilename(title) : selected.id.slice(0, 8)
     downloadBase64Image(
       selected.imageData,
-      `rumi-recipe-${date}-${selected.id.slice(0, 8)}.png`
+      `rumi-${namePart}-${date}.png`
     )
   }, [selected])
 
@@ -126,11 +140,18 @@ export default function GalleryPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={`data:image/png;base64,${img.imageData}`}
-                alt="Recipe card"
+                alt={getTitle(img) || 'Recipe card'}
                 className="w-full"
               />
-              <div className="p-2 text-xs text-zinc-500">
-                {new Date(img.createdAt).toLocaleDateString()}
+              <div className="p-2">
+                {getTitle(img) && (
+                  <p className="text-sm font-medium text-zinc-700 truncate">
+                    {getTitle(img)}
+                  </p>
+                )}
+                <p className="text-xs text-zinc-500">
+                  {new Date(img.createdAt).toLocaleDateString()}
+                </p>
               </div>
             </button>
           ))}
@@ -165,7 +186,7 @@ export default function GalleryPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={`data:image/png;base64,${selected.imageData}`}
-                alt="Recipe card full view"
+                alt={getTitle(selected) || 'Recipe card full view'}
                 className="mx-auto max-h-[70vh] object-contain"
               />
             </div>
@@ -173,6 +194,11 @@ export default function GalleryPage() {
             {/* Footer: metadata + actions */}
             <div className="flex items-center justify-between border-t border-zinc-200 px-4 py-3">
               <div className="text-sm text-zinc-500">
+                {getTitle(selected) && (
+                  <span className="font-medium text-zinc-700">
+                    {getTitle(selected)} ·{' '}
+                  </span>
+                )}
                 {new Date(selected.createdAt).toLocaleDateString()} · Image{' '}
                 {selectedIndex + 1} of {images.length}
               </div>

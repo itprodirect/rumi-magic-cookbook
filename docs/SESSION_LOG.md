@@ -32,6 +32,29 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 
 ## Sessions
 
+### Session 5 — 2026-02-21
+**Agent:** Claude Code (Opus 4.6)
+**Phase:** 4 (Image generation + gallery polish)
+**Goal:** Make image generation env-configurable, use title as image name in UI + downloads
+
+**Completed:**
+- Approve route now reads IMAGE_MODEL, IMAGE_QUALITY, IMAGE_SIZE from env (defaults: gpt-image-1.5 / medium / 1024x1024)
+- Gallery cards show title extracted from tokenIds below each image
+- Lightbox footer shows title before date
+- Download filename uses sanitized title (e.g. `rumi-sunset-feast-20260221.png`) instead of ID
+- Alt text on gallery images uses title when available
+- Updated .env.example with IMAGE_* variables
+- Lint clean, build succeeds (16 routes)
+
+**Files Changed:**
+- src/app/api/admin/approve/route.ts — env-configurable model/quality/size with defaults
+- src/app/gallery/page.tsx — title display on cards + lightbox, title-based download filename, sanitizeForFilename helper
+- .env.example — added IMAGE_MODEL, IMAGE_QUALITY, IMAGE_SIZE docs
+
+**Notes:**
+- tokenIds.title stores the dictionary label (user-selected title), not a free-text string
+- If no title is present in tokenIds, falls back to ID prefix for download filename
+
 ### Session 4 — 2026-02-21
 **Agent:** Claude Code (Opus 4.6)
 **Phase:** 4 (Builder wizard UX)

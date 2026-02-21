@@ -34,12 +34,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Generate image via OpenAI
+    // Generate image via OpenAI (env-configurable model settings)
     const imageResponse = await openai.images.generate({
-      model: 'gpt-image-1',
+      model: process.env.IMAGE_MODEL || 'gpt-image-1.5',
       prompt: record.composedPrompt,
-      quality: 'low',
-      size: '1024x1024',
+      quality: (process.env.IMAGE_QUALITY || 'medium') as 'low' | 'medium' | 'high' | 'auto',
+      size: (process.env.IMAGE_SIZE || '1024x1024') as '1024x1024' | '1536x1024' | '1024x1536' | 'auto',
       n: 1,
     })
 
