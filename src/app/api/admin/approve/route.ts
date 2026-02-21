@@ -5,6 +5,39 @@ import { openai } from '@/lib/openai'
 import { moderateImage } from '@/lib/moderation'
 
 const MAX_IMAGE_BASE64_LENGTH = 8 * 1024 * 1024 // ~8MB base64 payload cap
+const UUIDISH_REGEX =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+const ALLOWED_IMAGE_MODELS = ['gpt-image-1.5', 'gpt-image-1', 'gpt-image-1-mini'] as const
+const ALLOWED_IMAGE_QUALITIES = ['low', 'medium'] as const
+const ALLOWED_IMAGE_SIZES = ['1024x1024'] as const
+const DEFAULT_IMAGE_MODEL = 'gpt-image-1.5'
+const DEFAULT_IMAGE_QUALITY = 'medium'
+const DEFAULT_IMAGE_SIZE = '1024x1024'
+
+function isUuidish(value: string): boolean {
+  return UUIDISH_REGEX.test(value)
+}
+
+function readAllowedEnvValue<T extends readonly string[]>(
+  name: string,
+  allowedValues: T,
+  fallback: T[number]
+): T[number] {
+  const raw = process.env[name]
+  if (!raw) {
+    return fallback
+  }
+
+  const value = raw.trim()
+  if ((allowedValues as readonly string[]).includes(value)) {
+    return value as T[number]
+  }
+
+  console.warn(
+    `Invalid ${name} value "${raw}". Falling back to safe default "${fallback}".`
+  )
+  return fallback
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,6 +49,12 @@ export async function POST(request: NextRequest) {
     const { id } = await request.json()
     if (!id || typeof id !== 'string') {
       return NextResponse.json({ error: 'id is required' }, { status: 400 })
+    }
+    if (!isUuidish(id)) {
+      return NextResponse.json(
+        { error: 'id must be a UUID-like string' },
+        { status: 400 }
+      )
     }
 
     const record = await prisma.generationRequest.findUnique({
@@ -34,12 +73,28 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const imageModel = readAllowedEnvValue(
+      'IMAGE_MODEL',
+      ALLOWED_IMAGE_MODELS,
+      DEFAULT_IMAGE_MODEL
+    )
+    const imageQuality = readAllowedEnvValue(
+      'IMAGE_QUALITY',
+      ALLOWED_IMAGE_QUALITIES,
+      DEFAULT_IMAGE_QUALITY
+    )
+    const imageSize = readAllowedEnvValue(
+      'IMAGE_SIZE',
+      ALLOWED_IMAGE_SIZES,
+      DEFAULT_IMAGE_SIZE
+    )
+
     // Generate image via OpenAI (env-configurable model settings)
     const imageResponse = await openai.images.generate({
-      model: process.env.IMAGE_MODEL || 'gpt-image-1.5',
+      model: imageModel,
       prompt: record.composedPrompt,
-      quality: (process.env.IMAGE_QUALITY || 'medium') as 'low' | 'medium' | 'high' | 'auto',
-      size: (process.env.IMAGE_SIZE || '1024x1024') as '1024x1024' | '1536x1024' | '1024x1536' | 'auto',
+      quality: imageQuality,
+      size: imageSize,
       n: 1,
     })
 

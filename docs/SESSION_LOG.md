@@ -32,6 +32,25 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 
 ## Sessions
 
+### Session 6 - 2026-02-21
+**Agent:** Codex
+**Phase:** 4 (review hardening)
+**Goal:** Remove gallery tokenIds exposure and enforce strict image env guardrails
+
+**Completed:**
+- `/api/gallery` now returns only `id`, `title`, `imageData`, `createdAt` (no `tokenIds` in response)
+- Gallery UI consumes `title` directly from API response
+- `/api/admin/approve` now validates `id` as UUID-like before DB lookup
+- Added runtime allowlists for `IMAGE_MODEL`, `IMAGE_QUALITY`, `IMAGE_SIZE` with safe defaults and invalid-value fallback
+- Updated `.env.example` and setup docs to reflect allowed image env values and cheaper alternatives
+
+**Files Changed:**
+- src/app/api/gallery/route.ts - map DB rows to safe gallery payload
+- src/app/gallery/page.tsx - remove tokenIds dependency, use `title`
+- src/app/api/admin/approve/route.ts - UUID-ish validation + env guardrails
+- .env.example - image env defaults/allowed values/comments
+- docs/SETUP.md - image env notes
+
 ### Session 5 — 2026-02-21
 **Agent:** Claude Code (Opus 4.6)
 **Phase:** 4 (Image generation + gallery polish)

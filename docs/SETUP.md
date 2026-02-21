@@ -40,9 +40,14 @@ Copy `.env.example` to `.env.local` and fill in:
 | `ADMIN_PIN_HASH` | Run: `node -e "require('bcryptjs').hash('123456', 12).then(h => console.log(h))"` (replace 123456 with your PIN) |
 | `SESSION_SECRET` | Run: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` |
 | `CRON_SECRET` | Run: `node -e "console.log(require('crypto').randomBytes(16).toString('hex'))"` |
+| `IMAGE_MODEL` | Optional. Allowed: `gpt-image-1.5` (default), `gpt-image-1`, `gpt-image-1-mini` |
+| `IMAGE_QUALITY` | Optional. Allowed: `medium` (default), `low` |
+| `IMAGE_SIZE` | Optional. Allowed: `1024x1024` (default only in V0) |
 | `MAX_DAILY_PER_DEVICE` | Daily request cap per device (default `10`) |
 | `MAX_DAILY_PER_IP` | Reserved for upcoming IP limiter support (default `20`) |
 | `MAX_DAILY_GLOBAL` | Daily request cap across all devices (default `100`) |
+
+Image generation env vars are runtime-validated in `/api/admin/approve`. Invalid values are ignored and safe defaults are used.
 
 ### ADMIN_PIN_HASH Troubleshooting
 
