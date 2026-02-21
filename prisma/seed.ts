@@ -1,8 +1,13 @@
+import dotenv from 'dotenv'
+dotenv.config({ path: '.env.local' })
+
 import { PrismaClient, DictionaryCategory } from '@prisma/client'
+import { PrismaPg } from '@prisma/adapter-pg'
 import fs from 'node:fs'
 import path from 'node:path'
 
-const prisma = new PrismaClient()
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+const prisma = new PrismaClient({ adapter })
 
 const CATEGORY_FILES: { category: DictionaryCategory; file: string }[] = [
   { category: 'palette', file: 'palettes.json' },
