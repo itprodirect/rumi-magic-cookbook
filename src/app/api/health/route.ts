@@ -5,6 +5,7 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
+  const isProduction = process.env.NODE_ENV === 'production'
   const env = validateServerEnv()
 
   let db = {
@@ -38,6 +39,13 @@ export async function GET() {
 
   const ok = env.ok && db.ok
 
+  if (isProduction) {
+    return NextResponse.json(
+      { status: ok ? 'ok' : 'degraded' },
+      { status: ok ? 200 : 503 }
+    )
+  }
+
   return NextResponse.json(
     {
       ok,
@@ -50,4 +58,3 @@ export async function GET() {
     { status: ok ? 200 : 503 }
   )
 }
-
