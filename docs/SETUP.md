@@ -173,15 +173,22 @@ To test that moderation is working without burning image generation credits:
 
 ## Cron Cleanup Endpoint
 
-`POST /api/cron/cleanup` requires this exact header format:
+Vercel cron calls `GET /api/cron/cleanup` (the route also supports `POST` for manual testing).
+
+Both methods require this exact header format:
 
 ```bash
 Authorization: Bearer <CRON_SECRET>
 ```
 
-Example:
+Examples:
 
 ```bash
+# GET (matches Vercel cron behavior)
+curl http://localhost:3000/api/cron/cleanup \
+  -H "Authorization: Bearer $CRON_SECRET"
+
+# POST (manual testing also supported)
 curl -X POST http://localhost:3000/api/cron/cleanup \
   -H "Authorization: Bearer $CRON_SECRET"
 ```
@@ -204,9 +211,9 @@ curl "http://localhost:3000/api/gallery?deviceId=<uuid-v4>"
 ## Demo-Ready Checklist
 
 - `npm run db:migrate` and `npm run db:seed` succeed.
-- `npm run lint` and `npm run build` succeed.
-- `/` submits valid `/api/generate` payloads and returns pending IDs.
-- `/admin` login works and unauthenticated calls to `/api/admin/queue|approve|reject|logout` return `401`.
+- `npm run lint`, `npm run test`, and `npm run build` succeed.
+- `/` redirects to `/kid`, and `/kid` submits valid `/api/generate` payloads (pending IDs returned).
+- `/parent` login works (`/admin` redirects to `/parent`) and unauthenticated calls to `/api/admin/queue|approve|reject|logout` return `401`.
 - `/gallery` shows an empty state when no approved items and an error state on API failures.
 - `/api/cron/cleanup` only accepts `Authorization: Bearer <CRON_SECRET>`.
 
@@ -214,28 +221,33 @@ curl "http://localhost:3000/api/gallery?deviceId=<uuid-v4>"
 
 Once you have the dev server running (`npm run dev`) and the database seeded:
 
-1. **Open the builder** at http://localhost:3000
-   - The builder is a 4-step wizard: **Preset → Core Picks → Extras → Review**
-   - Step 0: pick a preset (or "Surprise Me!" / "Skip")
-   - Step 1: select theme, style, palette (required); creature and title (optional)
-   - Step 2: toggle effect/addon chips; open Advanced for mood, steps, ingredients (mood auto-defaults if skipped)
-   - Step 3: review summary → submit
-   - You should see "Recipe submitted! ID: xxxxxxxx... Status: pending"
+1. **Open the builder** at http://localhost:3000 (redirects to `/kid`)
+   - The child UI is a visual token-builder (preset chips + token tabs + style cards)
+   - Use **Quick Start** presets or **Surprise Me!**
+   - Pick ingredients in the token tabs (Subject / Setting / Mood / Extra)
+   - Pick an art style in the style selector
+   - The recipe preview updates as chips are selected/removed
+   - Click **Create My Art!** to submit
+   - You should see a loading screen, then a success state telling you to ask a parent to approve
 
-2. **Open the admin panel** at http://localhost:3000/admin
+2. **Open the parent panel** at http://localhost:3000/parent
+   - `/admin` also works, but now redirects to `/parent`
    - Enter your PIN (the one you hashed for `ADMIN_PIN_HASH`)
-   - You'll see the pending generation in the queue
-   - Click "Approve" — this calls OpenAI to generate the image (takes ~10-30s)
-   - If moderation passes, status changes to "approved"
+   - You will see pending generations in the queue
+   - Click **Approve** (calls OpenAI and may take ~10-30s)
+   - If moderation passes, the request becomes `approved`
 
 3. **Check the gallery** at http://localhost:3000/gallery
-   - Your approved image should appear in the grid with its title below the thumbnail
-   - Click any card to open the lightbox (arrow keys / buttons to navigate, ESC to close)
-   - Download button saves as `rumi-<title>-<date>.png` (falls back to ID prefix if no title)
-   - The gallery API returns only `{ id, tokenIds.title, imageData, createdAt }` — no prompt text is exposed
+   - Your approved image appears in the grid with a title (when available)
+   - Click a card to open the lightbox (arrow keys/buttons to navigate, `Esc` to close)
+   - Download saves as `rumi-<title>-<date>.png` (falls back to ID prefix if no title)
+   - The gallery API returns only `{ id, title, imageData, createdAt }` (no prompt text or `tokenIds`)
    - The gallery is scoped to your device ID (stored in localStorage)
 
-4. **Test rejection**: submit another recipe, then reject it from admin — verify it doesn't appear in the gallery
+4. **Test rejection**
+   - Submit another recipe
+   - Reject it from `/parent`
+   - Confirm it does not appear in `/gallery`
 
 ## Common Issues
 
@@ -245,3 +257,4 @@ Once you have the dev server running (`npm run dev`) and the database seeded:
 | `Module not found: server-only` | Run `npm install server-only` |
 | `Invalid API Key` | Check `.env.local` has no trailing spaces or quotes around the key |
 | Port 3000 in use | `npx kill-port 3000` or use `next dev --webpack -p 3001` |
+

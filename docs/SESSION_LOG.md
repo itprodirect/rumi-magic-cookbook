@@ -32,6 +32,26 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 
 ## Sessions
 
+### Session 8 - 2026-02-22
+**Agent:** Claude Code (Opus 4.6)
+**Phase:** 4/5 (UI/UX overhaul, retroactive summary)
+**Goal:** Complete a multi-phase UI/UX overhaul of the kid builder, gallery, parent panel, and app shell while preserving the existing API contracts and safety model
+
+**Completed (5-phase overhaul summary):**
+- **Phase 1 - Design system + app shell:** replaced default styling with a warm Tailwind v4 tokenized design system (`src/app/globals.css`), added Baloo 2 + Nunito fonts, shared header/nav/background shell, and route transition template
+- **Phase 2 - Mascot + feedback system:** added CSS-built `LottieMascot`, `SpeechBubble`, loading painter, toast notifications, and confetti success animation
+- **Phase 3 - Kid builder overhaul (`/kid`):** introduced a visual token-based creation flow with quick-start presets, category tabs, recipe preview, style selector cards, and an updated create action UI
+- **Phase 4 - Gallery overhaul (`/gallery`):** upgraded gallery cards/grid, empty state, achievement banner, modal viewer with keyboard navigation, and scroll-to-top helper
+- **Phase 5 - Parent + routing + PWA polish:** added `/parent` login/queue UI, `/admin` -> `/parent` redirect, `/` -> `/kid` redirect, app template transitions, and `public/manifest.json`
+
+**Files Changed (overhaul commit `77933de`):**
+- 33 UI/PWA-focused files changed or added across `src/app`, `src/components`, `src/lib/constants`, and `public/manifest.json`
+- ~3.3k lines added (major UI re-architecture)
+
+**Notes:**
+- Safety model remained server-enforced (admin approval gate, moderation flow, server-only prompt composition)
+- Follow-up hardening/testing/documentation work happened in later sessions (env validation, cron GET support, health route, docs updates)
+
 ### Session 7 — 2026-02-21
 **Agent:** Claude Code (Opus 4.6)
 **Phase:** 4 (docs-only)
@@ -276,3 +296,4 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 **Notes:**
 - Decisions locked in REPO_REVIEW.md — DB=Neon Postgres, ORM=Prisma, storage=base64-in-DB
 - Next session: commit spec pack files + these new docs, then start Phase 1 (data layer)
+
