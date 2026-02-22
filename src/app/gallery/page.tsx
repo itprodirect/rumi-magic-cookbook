@@ -1,10 +1,20 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
-import Link from 'next/link'
 import { apiFetch, ApiError } from '@/lib/api-client'
 import { getOrCreateDeviceId } from '@/lib/device-id'
 import { downloadBase64Image } from '@/lib/download'
+
+import { LottieMascot } from '@/components/mascot/LottieMascot'
+import { SpeechBubble } from '@/components/mascot/SpeechBubble'
+import { AchievementBanner } from '@/components/gallery/AchievementBanner'
+import { GalleryGrid } from '@/components/gallery/GalleryGrid'
+import { EmptyGallery } from '@/components/gallery/EmptyGallery'
+import { ImageViewer } from '@/components/gallery/ImageViewer'
+import { Toast } from '@/components/feedback/Toast'
+import { ScrollToTop } from '@/components/shared/ScrollToTop'
+
+// ── Types ──
 
 interface GalleryImage {
   id: string
@@ -13,234 +23,135 @@ interface GalleryImage {
   createdAt: string
 }
 
-/** Return the server-provided title when present. */
-function getTitle(img: GalleryImage): string | null {
-  return img.title && img.title.trim() ? img.title.trim() : null
-}
-
 /** Sanitize a string for use as a filename segment. */
 function sanitizeForFilename(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40)
 }
 
+// ── Component ──
+
 export default function GalleryPage() {
   const [images, setImages] = useState<GalleryImage[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [deviceId, setDeviceId] = useState<string | null>(null)
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info'; visible: boolean }>({
+    message: '',
+    type: 'info',
+    visible: false,
+  })
+
+  // ── Data loading ──
+
+  async function loadGallery() {
+    setLoading(true)
+    setError(null)
+    try {
+      const id = getOrCreateDeviceId()
+      const res = await apiFetch<{ images: GalleryImage[] }>(
+        `/api/gallery?deviceId=${encodeURIComponent(id)}`
+      )
+      setImages(res.images)
+    } catch (e) {
+      if (e instanceof ApiError) {
+        setError(e.message)
+      } else {
+        setError('Failed to load gallery')
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
-    async function load() {
-      try {
-        const id = getOrCreateDeviceId()
-        setDeviceId(id)
-
-        const res = await apiFetch<{ images: GalleryImage[] }>(
-          `/api/gallery?deviceId=${encodeURIComponent(id)}`
-        )
-        setImages(res.images)
-      } catch (e) {
-        if (e instanceof ApiError) {
-          setError(`${e.message} (status ${e.status})`)
-        } else {
-          setError('Failed to load gallery')
-        }
-      } finally {
-        setLoading(false)
-      }
-    }
-    load()
+    loadGallery()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // Keyboard navigation
-  useEffect(() => {
-    if (selectedIndex === null) return
-
-    function handleKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        setSelectedIndex(null)
-      } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault()
-        setSelectedIndex((i) =>
-          i !== null && i < images.length - 1 ? i + 1 : i
-        )
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault()
-        setSelectedIndex((i) => (i !== null && i > 0 ? i - 1 : i))
-      }
-    }
-
-    window.addEventListener('keydown', handleKey)
-    return () => window.removeEventListener('keydown', handleKey)
-  }, [selectedIndex, images.length])
-
-  const selected = selectedIndex !== null ? images[selectedIndex] : null
+  // ── Download (preserved from original) ──
 
   const handleDownload = useCallback(() => {
-    if (!selected) return
-    const date = new Date(selected.createdAt)
+    if (selectedIndex === null) return
+    const image = images[selectedIndex]
+    if (!image) return
+
+    const date = new Date(image.createdAt)
       .toISOString()
       .slice(0, 10)
       .replace(/-/g, '')
-    const title = getTitle(selected)
-    const namePart = title ? sanitizeForFilename(title) : selected.id.slice(0, 8)
+    const title = image.title?.trim()
+    const namePart = title ? sanitizeForFilename(title) : image.id.slice(0, 8)
     downloadBase64Image(
-      selected.imageData,
+      image.imageData,
       `rumi-${namePart}-${date}.png`
     )
-  }, [selected])
+  }, [selectedIndex, images])
+
+  // ── Render: Loading ──
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-lg text-zinc-500">Loading gallery...</p>
+      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+        <LottieMascot state="thinking" size="md" />
+        <p className="text-warm-gray font-display text-lg">Loading your gallery...</p>
       </div>
     )
   }
 
+  // ── Render: Gallery ──
+
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="mb-2 text-2xl font-bold">Your Recipe Cards</h1>
-      <p className="mb-6 text-sm text-zinc-500">
-        Device: {deviceId ? deviceId.slice(0, 8) + '...' : 'unknown'}
-      </p>
+    <>
+      <Toast {...toast} onClose={() => setToast((t) => ({ ...t, visible: false }))} />
 
-      {error && (
-        <div className="mb-4 rounded bg-red-50 p-3 text-sm text-red-700">
-          {error}
-          {deviceId && (
-            <span className="block mt-1 text-xs text-red-500">
-              Device ID: {deviceId}
-            </span>
-          )}
-        </div>
+      {/* Image viewer modal */}
+      {selectedIndex !== null && images.length > 0 && (
+        <ImageViewer
+          images={images}
+          selectedIndex={selectedIndex}
+          onClose={() => setSelectedIndex(null)}
+          onNavigate={setSelectedIndex}
+          onDownload={handleDownload}
+        />
       )}
 
-      {!error && images.length === 0 && (
-        <div className="rounded bg-zinc-50 p-8 text-center text-zinc-500">
-          <p className="text-lg">No approved images yet.</p>
-          <p className="mt-2 text-sm">
-            Create a recipe and ask your parent to approve it!
-          </p>
-        </div>
-      )}
+      <div className="mx-auto max-w-4xl px-4 py-6 space-y-5">
+        {/* ── Header ── */}
+        <h1 className="font-display text-2xl font-bold text-charcoal animate-fade-in">
+          🖼️ My Art Gallery
+        </h1>
 
-      {images.length > 0 && (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {images.map((img, i) => (
-            <button
-              key={img.id}
-              type="button"
-              onClick={() => setSelectedIndex(i)}
-              className="overflow-hidden rounded border border-zinc-200 text-left transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`data:image/png;base64,${img.imageData}`}
-                alt={getTitle(img) || 'Recipe card'}
-                className="w-full"
-              />
-              <div className="p-2">
-                {getTitle(img) && (
-                  <p className="text-sm font-medium text-zinc-700 truncate">
-                    {getTitle(img)}
-                  </p>
-                )}
-                <p className="text-xs text-zinc-500">
-                  {new Date(img.createdAt).toLocaleDateString()}
-                </p>
-              </div>
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* Lightbox modal */}
-      {selected && selectedIndex !== null && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
-          onClick={() => setSelectedIndex(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Image viewer"
-        >
-          <div
-            className="relative mx-4 flex max-h-[90vh] max-w-3xl flex-col rounded-lg bg-white"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close button */}
+        {/* ── Error ── */}
+        {error && (
+          <div className="flex flex-col items-center text-center py-8 animate-fade-in">
+            <LottieMascot state="sleeping" size="sm" />
+            <SpeechBubble message="Couldn't load your gallery right now." />
+            <p className="mt-2 text-sm text-warm-gray max-w-xs">{error}</p>
             <button
               type="button"
-              onClick={() => setSelectedIndex(null)}
-              className="absolute right-2 top-2 z-10 rounded-full bg-white/80 px-2 py-1 text-sm font-medium text-zinc-600 hover:bg-white"
-              aria-label="Close"
+              onClick={() => loadGallery()}
+              className="mt-3 min-h-[44px] rounded-xl bg-coral px-5 text-white font-display font-semibold transition hover:bg-coral-dark btn-bounce"
             >
-              ✕
+              Try Again
             </button>
-
-            {/* Image */}
-            <div className="flex-1 overflow-auto p-2">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`data:image/png;base64,${selected.imageData}`}
-                alt={getTitle(selected) || 'Recipe card full view'}
-                className="mx-auto max-h-[70vh] object-contain"
-              />
-            </div>
-
-            {/* Footer: metadata + actions */}
-            <div className="flex items-center justify-between border-t border-zinc-200 px-4 py-3">
-              <div className="text-sm text-zinc-500">
-                {getTitle(selected) && (
-                  <span className="font-medium text-zinc-700">
-                    {getTitle(selected)} ·{' '}
-                  </span>
-                )}
-                {new Date(selected.createdAt).toLocaleDateString()} · Image{' '}
-                {selectedIndex + 1} of {images.length}
-              </div>
-
-              <div className="flex items-center gap-2">
-                {/* Prev/Next */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedIndex(selectedIndex - 1)}
-                  disabled={selectedIndex === 0}
-                  className="rounded border border-zinc-300 px-2 py-1 text-sm disabled:opacity-30"
-                  aria-label="Previous image"
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedIndex(selectedIndex + 1)}
-                  disabled={selectedIndex === images.length - 1}
-                  className="rounded border border-zinc-300 px-2 py-1 text-sm disabled:opacity-30"
-                  aria-label="Next image"
-                >
-                  →
-                </button>
-
-                {/* Download */}
-                <button
-                  type="button"
-                  onClick={handleDownload}
-                  className="rounded bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700"
-                >
-                  Download
-                </button>
-              </div>
-            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div className="mt-6 text-center">
-        <Link href="/" className="text-blue-600 hover:underline">
-          Create another recipe
-        </Link>
+        {/* ── Achievement banner ── */}
+        {!error && <AchievementBanner count={images.length} />}
+
+        {/* ── Empty or grid ── */}
+        {!error && images.length === 0 ? (
+          <EmptyGallery />
+        ) : (
+          <GalleryGrid
+            images={images}
+            onCardClick={setSelectedIndex}
+          />
+        )}
       </div>
-    </div>
+
+      <ScrollToTop />
+    </>
   )
 }
