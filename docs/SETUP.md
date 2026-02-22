@@ -49,6 +49,23 @@ Copy `.env.example` to `.env.local` and fill in:
 | `MAX_DAILY_GLOBAL` | Daily request cap across all devices (default `100`) |
 
 Image generation env vars are runtime-validated in `/api/admin/approve`. Invalid values are ignored and safe defaults are used.
+`OPENAI_MODEL` is a legacy/unused env var in this codebase; image generation uses `IMAGE_MODEL`.
+
+### Vercel Production Env (minimum)
+
+Required in Vercel Production:
+- `DATABASE_URL`
+- `OPENAI_API_KEY`
+- `ADMIN_PIN_HASH`
+- `SESSION_SECRET` (32+ chars)
+- `CRON_SECRET`
+
+Optional in Vercel Production (defaults apply if omitted):
+- `IMAGE_MODEL`, `IMAGE_QUALITY`, `IMAGE_SIZE`
+- `MAX_DAILY_PER_DEVICE`, `MAX_DAILY_PER_IP`, `MAX_DAILY_GLOBAL`
+
+Cleanup / legacy:
+- `OPENAI_MODEL` can be removed; it is not read by the current server code.
 
 ### ADMIN_PIN_HASH Troubleshooting
 
@@ -168,6 +185,13 @@ Example:
 curl -X POST http://localhost:3000/api/cron/cleanup \
   -H "Authorization: Bearer $CRON_SECRET"
 ```
+
+## Health Check Endpoint
+
+`GET /api/health` returns env + database readiness.
+
+- `200`: env is valid and DB is reachable
+- `503`: env validation failed or DB connectivity failed
 
 ## Gallery Endpoint
 

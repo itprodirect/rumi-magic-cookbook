@@ -85,5 +85,42 @@ Return:
 
 ## 5) Deploy to Vercel
 - Add domain: rumi.itprodirect.com
-- Set env vars (OPENAI_API_KEY, DATABASE_URL, ADMIN_PIN_HASH, etc.)
+- Set required env vars: `DATABASE_URL`, `OPENAI_API_KEY`, `ADMIN_PIN_HASH`, `SESSION_SECRET`, `CRON_SECRET`
+- Optional env vars (defaults exist): `IMAGE_MODEL`, `IMAGE_QUALITY`, `IMAGE_SIZE`, `MAX_DAILY_PER_DEVICE`, `MAX_DAILY_PER_IP`, `MAX_DAILY_GLOBAL`
+- Remove/ignore legacy `OPENAI_MODEL` (unused by current code)
+- Cron schedule is defined in `vercel.json`:
+  - `GET /api/cron/cleanup` at `0 5 * * *` (05:00 UTC daily)
 - DNS: CNAME rumi -> Vercel target
+
+### Cron verification (manual)
+
+Local (GET, same auth format Vercel cron uses):
+
+```bash
+curl -i "http://localhost:3000/api/cron/cleanup" \
+  -H "Authorization: Bearer $CRON_SECRET"
+```
+
+Local (POST still supported for manual testing):
+
+```bash
+curl -i -X POST "http://localhost:3000/api/cron/cleanup" \
+  -H "Authorization: Bearer $CRON_SECRET"
+```
+
+Production:
+
+```bash
+curl -i "https://rumi.itprodirect.com/api/cron/cleanup" \
+  -H "Authorization: Bearer <CRON_SECRET>"
+```
+
+Expected responses:
+- Unauthorized/missing header: `401 {"error":"Unauthorized"}`
+- Authorized: `200 {"deleted":{"pending":0,"approved":0,"rejected":0,"suggestions":0}}` (counts vary)
+
+### Where to check Vercel logs
+
+- Vercel Dashboard -> Project (`rumi.itprodirect.com`) -> Logs / Runtime Logs (Functions)
+- Filter for `/api/cron/cleanup` and confirm scheduled GET requests return `200`
+- If troubleshooting, also check the Cron Jobs view in Vercel to confirm the schedule is active and runs are firing
