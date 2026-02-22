@@ -151,6 +151,51 @@ Track each Claude Code (or manual) build session. One entry per session. Append 
 6. npm run lint → clean
 7. npm run build → succeeds
 
+### Session 3 - 2026-02-22
+**Agent:** Codex
+**Phase:** Deploy hardening (env + cron)
+**Goal:** Make Vercel production wiring safer and testable (startup env validation, health check, Vercel cron GET support)
+
+**Completed:**
+- Added centralized server env validation in `src/lib/server-env.ts` (required envs + optional env warnings)
+- Wired startup env validation into `src/app/layout.tsx` (fail-fast in production, warn in development)
+- Added `GET /api/health` route for env + database readiness checks (`200` healthy / `503` not ready)
+- Confirmed `OPENAI_MODEL` is unused; current image approval route uses `IMAGE_MODEL` / `IMAGE_QUALITY` / `IMAGE_SIZE`
+- Updated docs (`README`, `SETUP`, `RUNBOOK`, `.env.example`) to separate required vs optional Vercel env vars and mark `OPENAI_MODEL` as legacy/unused
+- Refactored cron cleanup route to support both `GET` (Vercel cron) and `POST`, reusing shared handler logic
+- Preserved strict cron auth (`Authorization: Bearer <CRON_SECRET>`) with timing-safe comparison
+- Added repo-root `vercel.json` cron schedule for `/api/cron/cleanup` at `0 5 * * *`
+- Added minimal cron handler tests (unauthorized -> `401`, authorized -> `200`)
+- Added `npm test` script using Node 22 native type-stripping + no-isolation mode (sandbox-compatible)
+
+**Verification:**
+- `npm run lint` -> pass
+- `npm run test` -> pass (cron handler tests)
+- `npm run build` -> startup validation correctly failed when `SESSION_SECRET` missing
+- `npm run build` with temporary shell `SESSION_SECRET` -> progressed, then failed on sandbox network access to Google Fonts (`next/font` fetch of Geist/Geist Mono)
+
+**Issues Found:**
+- Vercel local project link not present (`.vercel/` missing), so env mutation via CLI could not be performed from this workspace
+- Sandbox blocks child-process spawning for default `tsx --test` / isolated `node:test`, requiring a no-spawn test path
+- Vercel cron uses `GET`, while original route only supported `POST` (fixed)
+
+**Files Changed:**
+- `src/lib/server-env.ts` - NEW: centralized env validation + startup assertion
+- `src/app/api/health/route.ts` - NEW: readiness endpoint (env + DB)
+- `src/app/layout.tsx` - startup env validation hook
+- `src/lib/cron-cleanup-handler.ts` - NEW: shared testable auth/handler core
+- `src/lib/cron-cleanup.ts` - NEW: cleanup DB logic + runtime wrapper
+- `src/app/api/cron/cleanup/route.ts` - GET + POST route wrappers
+- `tests/cron-cleanup-route.test.ts` - NEW: minimal cron auth/success tests
+- `vercel.json` - NEW: Vercel cron schedule
+- `package.json` - added `test` script
+- `.env.example`, `README.md`, `docs/SETUP.md`, `docs/RUNBOOK.md` - env + health + cron docs updates
+
+**Notes:**
+- Vercel Production must include `SESSION_SECRET` (32+ chars) in addition to the already-set required env vars
+- Optional Vercel envs can be omitted because the code has defaults (`IMAGE_*`, `MAX_*`)
+- `OPENAI_MODEL` can be removed from Vercel; it is not read by the current codebase
+
 ### Session 2 - 2026-02-21
 **Agent:** Codex
 **Phase:** 3
