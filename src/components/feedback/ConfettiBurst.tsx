@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export interface ConfettiBurstProps {
   trigger: boolean
@@ -32,6 +32,22 @@ interface Particle {
   shape: 'square' | 'circle' | 'rect'
 }
 
+function createParticles(): Particle[] {
+  return Array.from({ length: PARTICLE_COUNT }, (_, i) => {
+    const shape = (['square', 'circle', 'rect'] as const)[i % 3]
+    return {
+      id: i,
+      color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+      left: `${2 + Math.random() * 96}%`,
+      delay: `${Math.random() * 0.8}s`,
+      spin: `${400 + Math.random() * 600}deg`,
+      drift: (Math.random() - 0.5) * 80,
+      size: 6 + Math.random() * 6,
+      shape,
+    }
+  })
+}
+
 /**
  * CSS-only confetti burst overlay.
  * Renders 36 particles that fall from the top with random rotation and drift.
@@ -39,33 +55,24 @@ interface Particle {
  */
 export default function ConfettiBurst({ trigger, onComplete }: ConfettiBurstProps) {
   const [active, setActive] = useState(false)
-
-  const particles = useMemo<Particle[]>(() => {
-    return Array.from({ length: PARTICLE_COUNT }, (_, i) => {
-      const shape = (['square', 'circle', 'rect'] as const)[i % 3]
-      return {
-        id: i,
-        color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
-        left: `${2 + Math.random() * 96}%`,
-        delay: `${Math.random() * 0.8}s`,
-        spin: `${400 + Math.random() * 600}deg`,
-        drift: (Math.random() - 0.5) * 80,
-        size: 6 + Math.random() * 6,
-        shape,
-      }
-    })
-  }, [])
+  const [particles] = useState<Particle[]>(createParticles)
 
   useEffect(() => {
     if (!trigger) return
 
-    setActive(true)
+    const startTimer = setTimeout(() => {
+      setActive(true)
+    }, 0)
+
     const timer = setTimeout(() => {
       setActive(false)
       onComplete?.()
     }, DURATION_MS)
 
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(startTimer)
+      clearTimeout(timer)
+    }
   }, [trigger, onComplete])
 
   if (!active) return null
