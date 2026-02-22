@@ -14,6 +14,7 @@ Kid-safe recipe-card image generator with parent approval controls.
 - **Gallery** (`/gallery`): API returns `{ id, title, imageData, createdAt }` only — no tokenIds or prompt text exposed. Lightbox supports keyboard nav (arrows, ESC). Downloads named `rumi-<title>-<date>.png`.
 - **Admin** (`/admin`): login with PIN; unauthenticated calls to `/api/admin/queue|approve|reject|logout` return `401`.
 - **Cron** (`POST /api/cron/cleanup`): requires `Authorization: Bearer <CRON_SECRET>`.
+- **Health** (`GET /api/health`): checks env validation + database connectivity (`200` healthy, `503` not ready).
 
 ### Admin PIN Hash Note
 
@@ -21,6 +22,7 @@ Kid-safe recipe-card image generator with parent approval controls.
 - Use `npm run setup:admin-pin` to generate a safe `.env.development.local`, or escape dollars as `\\$`.
 - `SESSION_SECRET` must be 32+ chars. Use `npm run setup:session-secret`.
 - One-shot local setup: `npm run setup:dev-secrets`.
+- `OPENAI_MODEL` is a legacy/unused env var in this repo. Image generation config uses `IMAGE_MODEL`.
 
 See `docs/SETUP.md` for full setup and endpoint details.
 

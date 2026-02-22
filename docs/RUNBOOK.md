@@ -85,5 +85,7 @@ Return:
 
 ## 5) Deploy to Vercel
 - Add domain: rumi.itprodirect.com
-- Set env vars (OPENAI_API_KEY, DATABASE_URL, ADMIN_PIN_HASH, etc.)
+- Set required env vars: `DATABASE_URL`, `OPENAI_API_KEY`, `ADMIN_PIN_HASH`, `SESSION_SECRET`, `CRON_SECRET`
+- Optional env vars (defaults exist): `IMAGE_MODEL`, `IMAGE_QUALITY`, `IMAGE_SIZE`, `MAX_DAILY_PER_DEVICE`, `MAX_DAILY_PER_IP`, `MAX_DAILY_GLOBAL`
+- Remove/ignore legacy `OPENAI_MODEL` (unused by current code)
 - DNS: CNAME rumi -> Vercel target
